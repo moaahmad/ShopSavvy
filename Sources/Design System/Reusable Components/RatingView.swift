@@ -1,0 +1,61 @@
+//
+//  RatingView.swift
+//  ShopSavvy
+//
+//  Created by Mo Ahmad on 14/04/2023.
+//
+
+import SwiftUI
+
+struct RatingView: View {
+    var rating: Double
+    var maxRating: Int
+
+    init(rating: Double, maxRating: Int = 5) {
+        self.rating = rating
+        self.maxRating = maxRating
+    }
+
+    var body: some View {
+        HStack(spacing: .Spacer.xxxs) {
+            let stars = HStack(spacing: .zero) {
+                ForEach(0..<maxRating, id: \.self) { _ in
+                    Image(systemName: ImageAsset.star)
+                        .font(.caption)
+                }
+            }
+
+            stars.overlay(
+                GeometryReader { geometry in
+                    let width = rating / CGFloat(maxRating) * geometry.size.width
+                    ZStack(alignment: .leading) {
+                        Rectangle()
+                            .frame(width: width)
+                            .foregroundColor(.yellow)
+                    }
+                }
+                .mask(stars)
+            )
+            .foregroundColor(.gray.opacity(0.5))
+
+            Text("(" + String(format: "%.2f", rating) + ")")
+                .font(.caption)
+                .fontWeight(.semibold)
+                .foregroundColor(.yellow)
+                .padding(.leading, .Spacer.xxxs)
+        }
+    }
+}
+
+private extension RatingView {
+    struct ImageAsset {
+        private init() {}
+        static var star: String { "star.fill" }
+    }
+}
+
+struct RatingView_Previews: PreviewProvider {
+    static var previews: some View {
+        RatingView(rating: 3)
+    }
+}
