@@ -15,18 +15,16 @@ struct URLPool {
     static private let scheme = "https"
     static private let host = "dummyjson.com"
 
-    static func productsURL() -> URL {
-//        let parameters = [
-//            URLQueryItem(name: "page", value: "\(page)"),
-//            URLQueryItem(name: "tag", value: "tone/recipes"),
-//            URLQueryItem(name: "show-tags", value: "series"),
-//            URLQueryItem(name: "show-fields", value: "thumbnail,headline"),
-//        ]
+    static func productsURL(limit: Int, skip: Int) -> URL {
+        let parameters = [
+            URLQueryItem(name: "limit", value: "\(limit)"),
+            URLQueryItem(name: "skip", value: "\(skip)")
+        ]
         return configureURL(
             scheme: scheme,
             host: host,
             path: Endpoint.products.rawValue,
-            parameters: nil
+            parameters: parameters
         )
     }
 }

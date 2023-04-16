@@ -9,7 +9,7 @@ import Combine
 import Foundation
 
 protocol ProductServicing {
-    func fetchProducts() -> Future<ProductResponse, Error>
+    func fetchProducts(limit: Int, skip: Int) -> Future<ProductResponse, Error>
 }
 
 struct ProductService: ProductServicing {
@@ -30,8 +30,8 @@ struct ProductService: ProductServicing {
 
     // MARK: - RecipeServicing Functions
 
-    func fetchProducts() -> Future<ProductResponse, Error> {
-        let request = urlRequestPool.fetchProductsRequest()
+    func fetchProducts(limit: Int, skip: Int) -> Future<ProductResponse, Error> {
+        let request = urlRequestPool.fetchProductsRequest(limit: limit, skip: skip)
         return Future<ProductResponse, Error> { promise in
             client.performRequest(request) { result in
                 switch result {
@@ -63,3 +63,4 @@ private extension ProductService {
         }
     }
 }
+

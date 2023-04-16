@@ -46,6 +46,7 @@ extension ProductFeedView {
                         viewModel: viewModel,
                         geometry: geometry
                     )
+                    .onAppear { viewModel.loadMoreContentIfNeeded(currentItem: product) }
                 }
                 .listStyle(.grouped)
                 .refreshable { viewModel.loadFeed() }
@@ -110,6 +111,7 @@ struct ProductFeedView_Previews: PreviewProvider {
         func loadFeed() {}
         func addOrRemoveProduct(_ product: Product, action: ProductFeedViewModel.CartAction) {}
         func productInCartCount(_ product: Product) -> Int { 0 }
+        func loadMoreContentIfNeeded(currentItem: Product?) {}
     }
 
     static var previews: some View {

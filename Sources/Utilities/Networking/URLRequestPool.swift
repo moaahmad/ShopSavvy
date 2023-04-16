@@ -8,11 +8,14 @@
 import Foundation
 
 protocol URLRequestPooling {
-    func fetchProductsRequest() -> URLRequest
+    func fetchProductsRequest(limit: Int, skip: Int) -> URLRequest
 }
 
 struct URLRequestPool: URLRequestPooling {
-    func fetchProductsRequest() -> URLRequest {
-        .init(method: .get, url: URLPool.productsURL())
+    func fetchProductsRequest(limit: Int, skip: Int) -> URLRequest {
+        .init(
+            method: .get,
+            url: URLPool.productsURL(limit: limit, skip: skip)
+        )
     }
 }
