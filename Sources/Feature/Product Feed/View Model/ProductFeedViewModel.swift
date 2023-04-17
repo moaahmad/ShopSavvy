@@ -128,7 +128,7 @@ private extension ProductFeedViewModel {
 
         // If there's an error, log it to the console for now
         if case let .failure(error) = completion {
-            print("Error fetching recipes: \(error.localizedDescription)")
+            print("Error fetching products: \(error.localizedDescription)")
         }
     }
 

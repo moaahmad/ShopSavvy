@@ -31,6 +31,7 @@ struct ProductCardView: View {
                 Text(product.title.orEmpty)
                     .font(.body)
                     .fontWeight(.semibold)
+                    .accessibilityLabel(product.title.orEmpty)
 
                 Spacer()
 
@@ -44,18 +45,22 @@ struct ProductCardView: View {
                 }
                 .buttonStyle(BorderedButtonStyle())
                 .layoutPriority(1)
+                .accessibilityLabel("Add \(product.title.orEmpty) to cart")
             }
 
             Text(product.description.orEmpty)
                 .font(.footnote)
                 .foregroundColor(.secondary)
+                .accessibilityLabel(product.description.orEmpty)
 
             RatingView(rating: product.rating.orZero)
+                .accessibilityLabel("Rated \(product.rating.orZero) stars")
 
             PriceInfoView(
                 price: product.price.orZero,
                 discountPercentage: product.discountPercentage
             )
+            .accessibilityLabel("Price \(product.price.orZero) pounds, \(product.discountPercentage.orZero) percent off")
         }
         .padding(.vertical, .Spacer.xxs)
     }

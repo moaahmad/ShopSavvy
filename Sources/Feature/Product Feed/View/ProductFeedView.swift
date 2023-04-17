@@ -85,6 +85,7 @@ extension ProductFeedView {
                 }
                 .animation(.spring(), value: viewModel.cartCount)
             }
+            .accessibilityLabel("Show shopping cart with \(viewModel.cartCount) items")
         }
     }
 }

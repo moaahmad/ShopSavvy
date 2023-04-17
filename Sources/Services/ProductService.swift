@@ -28,7 +28,7 @@ struct ProductService: ProductServicing {
         self.urlRequestPool = urlRequestPool
     }
 
-    // MARK: - RecipeServicing Functions
+    // MARK: - ProductServicing Functions
 
     func fetchProducts(limit: Int, skip: Int) -> Future<ProductResponse, Error> {
         let request = urlRequestPool.fetchProductsRequest(limit: limit, skip: skip)
