@@ -10,13 +10,17 @@ import SwiftUI
 @main
 struct ShopSavvyApp: App {
     @Environment(\.sizeCategory) var sizeCategory
-    @StateObject var viewModel = ProductFeedViewModel()
+    @StateObject var productFeedViewModel = ProductFeedViewModel()
+    @StateObject var shoppingCartViewModel = ShoppingCartViewModel()
 
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                ProductFeedView(viewModel: viewModel)
-                    .environment(\.sizeCategory, sizeCategory)
+                ProductFeedView(
+                    productFeedViewModel: productFeedViewModel,
+                    shoppingCartViewModel: shoppingCartViewModel
+                )
+                .environment(\.sizeCategory, sizeCategory)
             }
         }
     }

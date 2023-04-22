@@ -12,6 +12,6 @@ protocol ShoppingCartViewModeling {
     var cartCount: Int { get }
     var subtotal: Int { get }
 
-    func addOrRemoveProduct(_ product: Product, action: ProductFeedViewModel.CartAction)
+    func addOrRemoveProduct(_ product: Product, action: CartAction)
     func productInCartCount(_ product: Product) -> Int
 }

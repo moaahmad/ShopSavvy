@@ -7,28 +7,40 @@
 
 import SwiftUI
 
-struct ProductFeedView<ViewModel: ProductFeedViewModeling & ObservableObject>: View {
-    @ObservedObject var viewModel: ViewModel
+struct ProductFeedView<
+    ProductFeed: ProductFeedViewModeling & ObservableObject,
+    ShoppingCart: ShoppingCartViewModeling & ObservableObject
+>: View {
+    // MARK: - Properties
+
     @State private var showingShoppingCart = false
 
+    @ObservedObject var productFeedViewModel: ProductFeed
+    @ObservedObject var shoppingCartViewModel: ShoppingCart
+
+    // MARK: - View
+
     var body: some View {
-        ContentView(viewModel: viewModel)
-            .animation(.easeInOut, value: viewModel.isLoading)
-            .onAppear { viewModel.loadFeed() }
-            .navigationTitle("Products")
-            .sheet(isPresented: $showingShoppingCart) {
-                ShoppingCartView(viewModel: viewModel)
-                    .presentationDetents([.medium, .large])
+        ContentView(
+            productFeedViewModel: productFeedViewModel,
+            shoppingCartViewModel: shoppingCartViewModel
+        )
+        .animation(.easeInOut, value: productFeedViewModel.isLoading)
+        .onAppear { productFeedViewModel.loadFeed() }
+        .navigationTitle("Products")
+        .sheet(isPresented: $showingShoppingCart) {
+            ShoppingCartView(viewModel: shoppingCartViewModel)
+                .presentationDetents([.medium, .large])
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarCartButton(
+                    shoppingCartViewModel: shoppingCartViewModel,
+                    showingShoppingCart: $showingShoppingCart
+                )
+                .disabled(productFeedViewModel.isLoading)
             }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    ToolbarCartButton(
-                        viewModel: viewModel,
-                        showingShoppingCart: $showingShoppingCart
-                    )
-                    .disabled(viewModel.isLoading)
-                }
-            }
+        }
     }
 }
 
@@ -36,22 +48,23 @@ struct ProductFeedView<ViewModel: ProductFeedViewModeling & ObservableObject>: V
 
 extension ProductFeedView {
     struct ContentView: View {
-        @ObservedObject var viewModel: ViewModel
+        @ObservedObject var productFeedViewModel: ProductFeed
+        @ObservedObject var shoppingCartViewModel: ShoppingCart
 
         var body: some View {
             GeometryReader { geometry in
-                List(viewModel.products, id: \.id) { product in
+                List(productFeedViewModel.products, id: \.id) { product in
                     ProductCardView(
                         product: product,
-                        viewModel: viewModel,
+                        shoppingCartViewModel: shoppingCartViewModel,
                         geometry: geometry
                     )
-                    .onAppear { viewModel.loadMoreContentIfNeeded(currentItem: product) }
+                    .onAppear { productFeedViewModel.loadMoreContentIfNeeded(currentItem: product) }
                 }
                 .listStyle(.grouped)
-                .refreshable { viewModel.loadFeed() }
+                .refreshable { productFeedViewModel.loadFeed() }
                 .overlay(alignment: .top) {
-                    if viewModel.isLoading {
+                    if productFeedViewModel.isLoading {
                         ProgressView()
                             .progressViewStyle(.circular)
                             .padding(.top, .Spacer.md)
@@ -62,7 +75,7 @@ extension ProductFeedView {
     }
 
     struct ToolbarCartButton: View {
-        @ObservedObject var viewModel: ViewModel
+        @ObservedObject var shoppingCartViewModel: ShoppingCart
         @Binding var showingShoppingCart: Bool
 
         var body: some View {
@@ -73,26 +86,35 @@ extension ProductFeedView {
                     Image(systemName: ImageAsset.cart)
                         .font(.body)
                         .fontWeight(.semibold)
-                    if viewModel.cartCount != 0 {
-                        Text(String(viewModel.cartCount))
+                    if shoppingCartViewModel.cartCount != 0 {
+                        Text(String(shoppingCartViewModel.cartCount))
                             .font(.caption2)
-                            .padding(.Spacer.xxs / 2)
+                            .padding(Constant.toolbarPadding)
                             .background(Color.red)
                             .clipShape(Circle())
                             .foregroundColor(.white)
-                            .offset(x: 14, y: -14)
+                            .offset(
+                                x: Constant.toolbarImageOffset,
+                                y: -Constant.toolbarImageOffset
+                            )
                     }
                 }
-                .animation(.spring(), value: viewModel.cartCount)
+                .animation(.spring(), value: shoppingCartViewModel.cartCount)
             }
-            .accessibilityLabel("Show shopping cart with \(viewModel.cartCount) items")
+            .accessibilityLabel("Show shopping cart with \(shoppingCartViewModel.cartCount) items")
         }
     }
 }
 
 // MARK: - Constants
 
-private extension ProductFeedView {
+private extension ProductFeedView.ToolbarCartButton {
+    struct Constant {
+        private init() {}
+        static var toolbarImageOffset: CGFloat { 14 }
+        static var toolbarPadding: CGFloat { .Spacer.xxs / 2 }
+    }
+
     struct ImageAsset {
         private init() {}
         static var cart: String { "cart" }
@@ -110,12 +132,15 @@ struct ProductFeedView_Previews: PreviewProvider {
         var isLoading: Bool = false
 
         func loadFeed() {}
-        func addOrRemoveProduct(_ product: Product, action: ProductFeedViewModel.CartAction) {}
+        func addOrRemoveProduct(_ product: Product, action: CartAction) {}
         func productInCartCount(_ product: Product) -> Int { 0 }
         func loadMoreContentIfNeeded(currentItem: Product?) {}
     }
 
     static var previews: some View {
-        ProductFeedView(viewModel: PreviewViewModel())
+        ProductFeedView(
+            productFeedViewModel: PreviewViewModel(),
+            shoppingCartViewModel: ShoppingCartViewModel()
+        )
     }
 }

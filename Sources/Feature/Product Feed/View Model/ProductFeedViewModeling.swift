@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol ProductFeedViewModeling: ShoppingCartViewModeling {
+protocol ProductFeedViewModeling {
     var isLoading: Bool { get }
     var products: [Product] { get }
 

@@ -9,11 +9,6 @@ import Combine
 import Foundation
 
 final class ProductFeedViewModel: ProductFeedViewModeling & ObservableObject {
-    enum CartAction {
-        case add
-        case remove
-    }
-
     // MARK: - Properties
 
     private static let pageLimit = 20
@@ -26,20 +21,13 @@ final class ProductFeedViewModel: ProductFeedViewModeling & ObservableObject {
 
     // MARK: - Published Properties
 
-    @Published var shoppingCart: [Product: Int] = [:]
-
     @Published var isLoading: Bool = true
     @Published var products: [Product] = []
-
-    @Published var productsInCart: [Product] = []
-    @Published var cartCount: Int = 0
-    @Published var subtotal: Int = 0
 
     // MARK: - Initializer
 
     init(service: ProductServicing = ProductService()) {
         self.service = service
-        subscribeToShoppingCartUpdates()
     }
 }
 
@@ -60,35 +48,6 @@ extension ProductFeedViewModel {
             lastIndex >= thresholdIndex {
             fetchProducts()
         }
-    }
-}
-
-// MARK: - ShoppingCartViewModeling Functions
-
-extension ProductFeedViewModel {
-    func addOrRemoveProduct(_ product: Product, action: CartAction) {
-        switch action {
-        case .add:
-            // Add product to cart if it's not already added
-            guard let productCount = shoppingCart[product] else {
-                shoppingCart[product] = 1
-                return
-            }
-            // Only increment the product count if it's in stock
-            guard let productStock = product.stock,
-                productCount < productStock else {
-                return
-            }
-            shoppingCart[product] = productCount + 1
-        case .remove:
-            // Decrement the product count and remove the product if its zero
-            guard let productCount = shoppingCart[product] else { return }
-            shoppingCart[product] = productCount == 1 ? nil : productCount - 1
-        }
-    }
-
-    func productInCartCount(_ product: Product) -> Int {
-        shoppingCart[product].orZero
     }
 }
 
@@ -140,47 +99,5 @@ private extension ProductFeedViewModel {
         // If we don't receive any results and there is no error
         // set isLastPage to be true so we don't paginate again
         if products.isEmpty { self.isLastPage = true }
-    }
-}
-
-// MARK: - Combine Subscriptions
-
-private extension ProductFeedViewModel {
-    func subscribeToShoppingCartUpdates() {
-        let shoppingCartStream = $shoppingCart
-            .receive(on: DispatchQueue.main)
-
-        shoppingCartStream
-            .map { $0.values.reduce(0, +) }
-            .sink { [weak self] in
-                self?.cartCount = $0
-            }
-            .store(in: &cancellables)
-
-        shoppingCartStream
-            .map { Array($0.keys) }
-            .sink { [weak self] in
-                self?.productsInCart = $0
-            }
-            .store(in: &cancellables)
-
-        shoppingCartStream
-            .map { shoppingCart in
-                // Multiply the respective product's price by the quantity in the cart
-                let prices = Array(shoppingCart.keys).compactMap {
-                    $0.price.orZero * shoppingCart[$0].orZero
-                }
-                return prices.reduce(0, +)
-            }
-            .sink { [weak self] in
-                self?.subtotal = $0
-            }
-            .store(in: &cancellables)
-
-        shoppingCartStream
-            .sink { [weak self] _ in
-                self?.objectWillChange.send()
-            }
-            .store(in: &cancellables)
     }
 }

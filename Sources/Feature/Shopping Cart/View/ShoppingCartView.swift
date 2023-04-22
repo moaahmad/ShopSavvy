@@ -154,7 +154,7 @@ struct ShoppingCartView_Previews: PreviewProvider {
         var subtotal: Int = 0
         var cartCount: Int = 0
 
-        func addOrRemoveProduct(_ product: Product, action: ProductFeedViewModel.CartAction) {}
+        func addOrRemoveProduct(_ product: Product, action: CartAction) {}
         func productInCartCount(_ product: Product) -> Int { 0 }
     }
 
