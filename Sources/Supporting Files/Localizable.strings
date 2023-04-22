@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  ShopSavvy
+
+  Created by Mo Ahmad on 22/04/2023.
+  
+*/
+
+"product_feed_title" = "Products";
+
+"shopping_cart_empty" = "No products are currently in your cart";
+"shopping_cart_subtotal" = "Subtotal";
+"shopping_cart_value" = "£%@";
+"shopping_cart_buy_now" = "Buy Now";

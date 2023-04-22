@@ -79,7 +79,10 @@ private extension ProductCardView {
 
 struct ProductCardView_Previews: PreviewProvider {
     final class PreviewCartViewModel: ShoppingCartViewModeling {
-        var subtotal: Int = 0
+        var emptyText: String = ""
+        var subtotalTitleText: String = ""
+        var subtotalValueText: String = ""
+        var buyNowText: String = ""
         var cartCount: Int = 0
         var productsInCart: [Product] = []
 

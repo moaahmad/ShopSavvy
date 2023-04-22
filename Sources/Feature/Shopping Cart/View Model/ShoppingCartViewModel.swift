@@ -12,12 +12,19 @@ final class ShoppingCartViewModel: ShoppingCartViewModeling & ObservableObject {
     // MARK: - Properties
 
     private var cancellables: Set<AnyCancellable> = .init()
+    private var subtotal: Int = 0
 
-    @Published var shoppingCart: [Product: Int] = [:]
+    lazy var emptyText = "shopping_cart_empty".localized()
+    lazy var subtotalTitleText = "shopping_cart_subtotal".localized()
+    lazy var subtotalValueText = "shopping_cart_value".localized(0)
+    lazy var buyNowText = "shopping_cart_buy_now".localized()
+
+    // MARK: - Published Properties
+
+    @Published private var shoppingCart: [Product: Int] = [:]
 
     @Published var productsInCart: [Product] = []
     @Published var cartCount: Int = 0
-    @Published var subtotal: Int = 0
 
     // MARK: - Initializer
 
@@ -84,6 +91,7 @@ private extension ShoppingCartViewModel {
             }
             .sink { [weak self] in
                 self?.subtotal = $0
+                self?.subtotalValueText = "shopping_cart_value".localized($0.description)
             }
             .store(in: &cancellables)
 

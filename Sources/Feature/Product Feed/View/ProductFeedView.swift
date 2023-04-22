@@ -27,7 +27,7 @@ struct ProductFeedView<
         )
         .animation(.easeInOut, value: productFeedViewModel.isLoading)
         .onAppear { productFeedViewModel.loadFeed() }
-        .navigationTitle("Products")
+        .navigationTitle(productFeedViewModel.title)
         .sheet(isPresented: $showingShoppingCart) {
             ShoppingCartView(viewModel: shoppingCartViewModel)
                 .presentationDetents([.medium, .large])
@@ -125,15 +125,11 @@ private extension ProductFeedView.ToolbarCartButton {
 
 struct ProductFeedView_Previews: PreviewProvider {
     final class PreviewViewModel: ProductFeedViewModeling & ObservableObject {
-        var productsInCart: [Product] = []
-        var subtotal: Int = 0
-        var cartCount: Int = 0
+        var title: String = "Products"
         var products: [Product] = []
         var isLoading: Bool = false
 
         func loadFeed() {}
-        func addOrRemoveProduct(_ product: Product, action: CartAction) {}
-        func productInCartCount(_ product: Product) -> Int { 0 }
         func loadMoreContentIfNeeded(currentItem: Product?) {}
     }
 

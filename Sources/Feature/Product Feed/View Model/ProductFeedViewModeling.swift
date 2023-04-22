@@ -9,6 +9,7 @@ import Foundation
 
 protocol ProductFeedViewModeling {
     var isLoading: Bool { get }
+    var title: String { get }
     var products: [Product] { get }
 
     func loadFeed()

@@ -15,11 +15,11 @@ struct ShoppingCartView<ViewModel: ShoppingCartViewModeling & ObservableObject>:
             ScrollView {
                 VStack(alignment: .leading) {
                     // Header View
-                    ShoppingCartHeaderView(subtotal: viewModel.subtotal)
+                    ShoppingCartHeaderView(viewModel: viewModel)
 
                     if viewModel.productsInCart.isEmpty {
                         // Empty State
-                        Text("No products are currently in your cart")
+                        Text(viewModel.emptyText)
                     } else {
                         // Content View
                         LazyVStack(alignment: .leading) {
@@ -59,15 +59,15 @@ struct ShoppingCartView<ViewModel: ShoppingCartViewModeling & ObservableObject>:
 
 private extension ShoppingCartView {
     struct ShoppingCartHeaderView: View {
-        let subtotal: Int
+        @ObservedObject var viewModel: ViewModel
 
         var body: some View {
             HStack(spacing: .Spacer.xxxs) {
-                Text("Subtotal")
+                Text(viewModel.subtotalTitleText)
                     .font(.title2)
                     .fontWeight(.medium)
 
-                Text("£\(subtotal)")
+                Text(viewModel.subtotalValueText)
                     .font(.title2)
                     .fontWeight(.heavy)
             }
@@ -128,9 +128,10 @@ private extension ShoppingCartView {
 
         var body: some View {
             Button {
+                // TODO: Maybe present an alert here?
                 print("Buy now tapped")
             } label: {
-                Text("Buy Now")
+                Text(viewModel.buyNowText)
                     .font(.body)
                     .fontWeight(.semibold)
                     .frame(height: 50)
@@ -150,8 +151,11 @@ private extension ShoppingCartView {
 
 struct ShoppingCartView_Previews: PreviewProvider {
     final class PreviewViewModel: ShoppingCartViewModeling & ObservableObject {
+        var emptyText: String = ""
+        var subtotalTitleText: String = ""
+        var subtotalValueText: String = ""
+        var buyNowText: String = ""
         var productsInCart: [Product] = []
-        var subtotal: Int = 0
         var cartCount: Int = 0
 
         func addOrRemoveProduct(_ product: Product, action: CartAction) {}

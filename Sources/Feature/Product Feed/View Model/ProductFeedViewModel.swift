@@ -19,6 +19,8 @@ final class ProductFeedViewModel: ProductFeedViewModeling & ObservableObject {
     private var isRefreshing = false
     private var isLastPage = false
 
+    lazy var title: String = "product_feed_title".localized()
+
     // MARK: - Published Properties
 
     @Published var isLoading: Bool = true

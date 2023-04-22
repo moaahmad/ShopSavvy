@@ -31,6 +31,8 @@
 		4E002EE529ECC5E200246C5F /* ProductFeedViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E002EE429ECC5E200246C5F /* ProductFeedViewModelTests.swift */; };
 		4EADC1C229F42547006B97EF /* ShoppingCartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EADC1C129F42547006B97EF /* ShoppingCartViewModel.swift */; };
 		4EADC1C429F43185006B97EF /* CartAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EADC1C329F43185006B97EF /* CartAction.swift */; };
+		4EADC1C729F4801C006B97EF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4EADC1C629F4801C006B97EF /* Localizable.strings */; };
+		4EADC1C929F48089006B97EF /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EADC1C829F48089006B97EF /* String+Extensions.swift */; };
 		4EDE098629E70A4C00FC03CE /* ShopSavvyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDE098529E70A4C00FC03CE /* ShopSavvyApp.swift */; };
 		4EDE098A29E70A4C00FC03CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EDE098929E70A4C00FC03CE /* Assets.xcassets */; };
 		4EDE098D29E70A4C00FC03CE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EDE098C29E70A4C00FC03CE /* Preview Assets.xcassets */; };
@@ -86,6 +88,8 @@
 		4E002EE429ECC5E200246C5F /* ProductFeedViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductFeedViewModelTests.swift; sourceTree = "<group>"; };
 		4EADC1C129F42547006B97EF /* ShoppingCartViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewModel.swift; sourceTree = "<group>"; };
 		4EADC1C329F43185006B97EF /* CartAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartAction.swift; sourceTree = "<group>"; };
+		4EADC1C629F4801C006B97EF /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		4EADC1C829F48089006B97EF /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		4EDE098229E70A4C00FC03CE /* ShopSavvy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShopSavvy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EDE098529E70A4C00FC03CE /* ShopSavvyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopSavvyApp.swift; sourceTree = "<group>"; };
 		4EDE098929E70A4C00FC03CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -342,6 +346,7 @@
 			children = (
 				4EDE098929E70A4C00FC03CE /* Assets.xcassets */,
 				4EDE098B29E70A4C00FC03CE /* Preview Content */,
+				4EADC1C629F4801C006B97EF /* Localizable.strings */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -390,6 +395,7 @@
 				4EDE09B129E710ED00FC03CE /* Data+Extensions.swift */,
 				4EDE09B329E7110A00FC03CE /* URLRequest+Extensions.swift */,
 				4E002E9029E9E8D000246C5F /* Optional+Extensions.swift */,
+				4EADC1C829F48089006B97EF /* String+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -518,6 +524,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EDE098D29E70A4C00FC03CE /* Preview Assets.xcassets in Resources */,
+				4EADC1C729F4801C006B97EF /* Localizable.strings in Resources */,
 				4EDE098A29E70A4C00FC03CE /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -561,6 +568,7 @@
 				4EDE09AA29E70C4D00FC03CE /* ProductResponse.swift in Sources */,
 				4E002E8D29E9C18600246C5F /* ProductCardView.swift in Sources */,
 				4EDE09A129E70B3900FC03CE /* Error.swift in Sources */,
+				4EADC1C929F48089006B97EF /* String+Extensions.swift in Sources */,
 				4E002E8F29E9C25D00246C5F /* ShoppingCartView.swift in Sources */,
 				4EDE09BB29E7119200FC03CE /* ProductFeedViewModel.swift in Sources */,
 				4EDE098629E70A4C00FC03CE /* ShopSavvyApp.swift in Sources */,
