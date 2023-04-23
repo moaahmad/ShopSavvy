@@ -175,9 +175,7 @@
 		4E002EAB29EA57F400246C5F /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				4E002ED629ECC2F700246C5F /* Extensions */,
 				4E002EC229EC752000246C5F /* Feature */,
-				4E002EC329EC752A00246C5F /* Services */,
 				4E002EC429EC753800246C5F /* Stubs */,
 				4E002EC129EC750500246C5F /* Utilities */,
 			);
@@ -208,6 +206,7 @@
 		4E002EC129EC750500246C5F /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				4E002ED629ECC2F700246C5F /* Extensions */,
 				4E002ED329ECC27500246C5F /* Networking */,
 			);
 			path = Utilities;
@@ -221,12 +220,12 @@
 			path = Feature;
 			sourceTree = "<group>";
 		};
-		4E002EC329EC752A00246C5F /* Services */ = {
+		4E002EC329EC752A00246C5F /* Service */ = {
 			isa = PBXGroup;
 			children = (
 				4E002EE129ECC4AB00246C5F /* ProductServiceTests.swift */,
 			);
-			path = Services;
+			path = Service;
 			sourceTree = "<group>";
 		};
 		4E002EC429EC753800246C5F /* Stubs */ = {
@@ -280,7 +279,8 @@
 		4E002EE329ECC5C000246C5F /* Product Feed */ = {
 			isa = PBXGroup;
 			children = (
-				4E002EE429ECC5E200246C5F /* ProductFeedViewModelTests.swift */,
+				4E002EC329EC752A00246C5F /* Service */,
+				4EADC1CA29F5CDD3006B97EF /* View Model */,
 			);
 			path = "Product Feed";
 			sourceTree = "<group>";
@@ -291,6 +291,14 @@
 				4EADC1C329F43185006B97EF /* CartAction.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		4EADC1CA29F5CDD3006B97EF /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				4E002EE429ECC5E200246C5F /* ProductFeedViewModelTests.swift */,
+			);
+			path = "View Model";
 			sourceTree = "<group>";
 		};
 		4EDE097929E70A4C00FC03CE = {
