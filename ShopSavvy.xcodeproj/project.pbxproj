@@ -164,12 +164,12 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		4E002E9829EA568C00246C5F /* Services */ = {
+		4E002E9829EA568C00246C5F /* Service */ = {
 			isa = PBXGroup;
 			children = (
 				4EDE09A629E70BB000FC03CE /* ProductService.swift */,
 			);
-			path = Services;
+			path = Service;
 			sourceTree = "<group>";
 		};
 		4E002EAB29EA57F400246C5F /* Tests */ = {
@@ -317,8 +317,6 @@
 				4EDE099329E70A5C00FC03CE /* Application */,
 				4E002EB529EAE7A500246C5F /* Design System */,
 				4EDE099729E70A7E00FC03CE /* Feature */,
-				4E002E9729EA568200246C5F /* Model */,
-				4E002E9829EA568C00246C5F /* Services */,
 				4EDE099429E70A6600FC03CE /* Supporting Files */,
 				4EDE099529E70A6E00FC03CE /* Utilities */,
 			);
@@ -403,6 +401,8 @@
 		4EDE09B729E7115E00FC03CE /* Product Feed */ = {
 			isa = PBXGroup;
 			children = (
+				4E002E9729EA568200246C5F /* Model */,
+				4E002E9829EA568C00246C5F /* Service */,
 				4EDE09B829E7117A00FC03CE /* View Model */,
 				4EDE09B929E7118100FC03CE /* View */,
 			);

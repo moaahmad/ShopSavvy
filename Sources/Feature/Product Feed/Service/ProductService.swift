@@ -36,7 +36,11 @@ struct ProductService: ProductServicing {
             client.performRequest(request) { result in
                 switch result {
                 case let .success((data, response)):
-                    handleFetchProductsSuccessResponse(data: data, response: response, promise: promise)
+                    handleFetchProductsSuccessResponse(
+                        data: data,
+                        response: response,
+                        promise: promise
+                    )
                 case .failure(let error):
                     promise(.failure(error))
                 }
