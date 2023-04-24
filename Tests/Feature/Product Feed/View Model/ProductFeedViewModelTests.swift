@@ -32,33 +32,34 @@ extension ProductFeedViewModelTests {
         XCTAssertEqual(sut.products.count, 0)
     }
 
-    func test_products_loadFeed_30Values() throws {
-        // Given
-        let sut = makeSUT(
-            service: MockProductService(
-                productResult: .success(ProductResponse.anyProductResponse())
-            )
-        ).0
-        let exp = expectation(description: #function)
+    func test_products_loadFeed_30Values() async throws {
+            // Given
+            let sut = makeSUT(
+                service: MockProductService(
+                    productResult: .success(ProductResponse.anyProductResponse())
+                )
+            ).0
+            let exp = expectation(description: #function)
+            exp.assertForOverFulfill = false
 
-        // When
-        sut.loadFeed()
+            // When
+            sut.loadFeed()
 
-        sut.$products
-            .receive(on: DispatchQueue.main)
-            .sink { _ in
-                guard !sut.products.isEmpty else { return }
-                exp.fulfill()
-            }
-            .store(in: &cancellables)
+            sut.$products
+                .receive(on: DispatchQueue.main)
+                .sink { _ in
+                    guard !sut.products.isEmpty else { return }
+                    exp.fulfill()
+                }
+                .store(in: &cancellables)
 
-        waitForExpectations(timeout: 1)
+            await fulfillment(of: [exp])
 
-        // Then
-        XCTAssertEqual(sut.products.count, 30)
+            // Then
+            XCTAssertEqual(sut.products.count, 30)
     }
 
-    func test_loadFeed_onRefresh_ShouldCallFetchProducts() {
+    func test_loadFeed_onRefresh_ShouldCallFetchProducts() async {
         // Given
         let (sut, service) = makeSUT(
             service: MockProductService(
@@ -66,6 +67,7 @@ extension ProductFeedViewModelTests {
             )
         )
         let exp = expectation(description: #function)
+        exp.assertForOverFulfill = false
 
         // When
         sut.loadFeed()
@@ -78,7 +80,7 @@ extension ProductFeedViewModelTests {
             }
             .store(in: &cancellables)
 
-        waitForExpectations(timeout: 1)
+        await fulfillment(of: [exp], timeout: 1)
 
         // Then
         let mockService = try? XCTUnwrap(service as? MockProductService)

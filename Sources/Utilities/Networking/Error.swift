@@ -7,7 +7,8 @@
 
 import Foundation
 
-enum ResponseError: Error {
+enum NetworkError: Error {
+    case connectivity
     case invalidResponse
     case invalidData
 }

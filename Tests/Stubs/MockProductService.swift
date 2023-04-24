@@ -17,16 +17,16 @@ final class MockProductService: ProductServicing {
         self.productResult = productResult
     }
 
-    func fetchProducts(limit: Int, skip: Int) -> Future<ProductResponse, Error> {
-        return Future<ProductResponse, Error> { [weak self] promise in
-            guard let result = self?.productResult else { return }
-            switch result {
-            case .success(let response):
-                self?.fetchProductsCalledCount += 1
-                promise(.success(response))
-            case .failure(let error):
-                promise(.failure(error))
-            }
+    func fetchProducts(limit: Int, skip: Int) async throws -> ProductResponse {
+        guard let result = productResult else {
+            fatalError("productResult must be set before fetchProducts is called")
+        }
+        switch result {
+        case .success(let response):
+            fetchProductsCalledCount += 1
+            return response
+        case .failure(let error):
+            throw error
         }
     }
 }

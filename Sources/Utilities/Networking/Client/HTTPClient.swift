@@ -8,7 +8,17 @@
 import Foundation
 
 protocol HTTPClient {
-    typealias Result = Swift.Result<(Data, HTTPURLResponse), Error>
+    func performRequest(_ request: URLRequest) async throws -> (Data, HTTPURLResponse)
+}
 
-    func performRequest(_ request: URLRequest, completion: @escaping (Result) -> Void)
+extension URLSession: HTTPClient {
+    private struct UnexpectedValuesRepresentation: Error {}
+
+    func performRequest(_ request: URLRequest) async throws -> (Data, HTTPURLResponse) {
+        let (data, response) = try await data(for: request)
+        guard let httpResponse = response as? HTTPURLResponse else {
+            throw UnexpectedValuesRepresentation()
+        }
+        return (data, httpResponse)
+    }
 }

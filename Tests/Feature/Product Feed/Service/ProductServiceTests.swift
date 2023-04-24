@@ -5,148 +5,127 @@
 //  Created by Mo Ahmad on 17/04/2023.
 //
 
-import Combine
 import XCTest
 @testable import ShopSavvy
 
 final class ProductServiceTests: XCTestCase {
-    var cancellables: Set<AnyCancellable>!
+    func test_init_doesNotStartNetworkRequest() {
+        // Given
+        let (_, session) = makeSUT()
 
-    override func setUp() {
-        super.setUp()
-        cancellables = .init()
+        // Then
+        XCTAssertEqual(session.requests.count, 0)
     }
 
-    override func tearDown() {
-        cancellables.removeAll()
-        super.tearDown()
+    func test_fetchProducts_startsNetworkRequest() async throws {
+        // Given
+        let (sut, session) = makeSUT()
+
+        // When
+        _ = try? await sut.fetchProducts(limit: 30, skip: 0)
+
+        // Then
+        XCTAssertEqual(session.requests.count, 1)
     }
 }
 
-// MARK: - Load Feed Failure Tests
+// MARK: - Load Feed Error Tests
 
 extension ProductServiceTests {
-    func test_fetchProducts_onSuccessWithNon200Code_returnsError() {
+    func test_fetchProducts_onFailureWithNetworkError_returnsConnectivityError() async throws {
         // Given
-        let (sut, client) = makeSUT()
-
-        var returnedError: ResponseError?
-        let exp = expectation(description: "Wait for fetch completion")
+        let anyError = Self.anyError()
+        let (sut, _) = makeSUT(result: .failure(anyError))
 
         // When
-        sut.fetchProducts(limit: 20, skip: 20)
-            .sink { completion in
-                switch completion {
-                case .failure(let error as ResponseError):
-                    returnedError = error
-                    exp.fulfill()
-                default:
-                    XCTFail("Expected fetch to fail with invalidResponse error")
-                }
-            } receiveValue: { result in
-                XCTFail("Expected fetch to fail with invalidResponse error")
-            }
-            .store(in: &cancellables)
-
-        client.complete(withStatusCode: 100, data: .init())
-        wait(for: [exp], timeout: 1.0)
-
-        // Then
-        XCTAssertEqual(returnedError, .invalidResponse)
+        do {
+            _ = try await sut.fetchProducts(limit: 30, skip: 0)
+            XCTFail("Expected error: \(NetworkError.connectivity)")
+        } catch {
+            // Then
+            XCTAssertEqual(error as? NetworkError, .connectivity)
+        }
     }
 
-    func test_fetchProducts_onSuccessWithNonInvalidData_returnsError() {
+    func test_fetchProducts_onSuccessWithNon200Response_returnsInvalidResponseError() async throws {
         // Given
-        let (sut, client) = makeSUT()
-        let exp = expectation(description: "Wait for fetch completion")
-        var returnedError: ResponseError?
+        let non200Response = Self.httpResponse(code: 400)
+        let (sut, _) = makeSUT(result: .success((Data(), non200Response)))
 
         // When
-        sut.fetchProducts(limit: 20, skip: 20)
-            .sink { completion in
-                switch completion {
-                case .failure(let error as ResponseError):
-                    returnedError = error
-                    exp.fulfill()
-                default:
-                    XCTFail("Expected fetch to fail with invalidData error")
-                }
-            } receiveValue: { result in
-                XCTFail("Expected fetch to fail with invalidData error")
-            }
-            .store(in: &cancellables)
-
-        client.complete(withStatusCode: 200, data: MockServer.loadLocalJSON("BadJSON"))
-        wait(for: [exp], timeout: 1.0)
-
-        // Then
-        XCTAssertEqual(returnedError, .invalidData)
+        do {
+            _ = try await sut.fetchProducts(limit: 30, skip: 0)
+            XCTFail("Expected error: \(NetworkError.invalidResponse)")
+        } catch {
+            // Then
+            XCTAssertEqual(error as? NetworkError, .invalidResponse)
+        }
     }
 
-    func test_fetchProducts_onFailure_returnsError() {
+    func test_fetchProducts_onSuccessWithInvalidData_returnsInvalidDataError() async throws {
         // Given
-        let (sut, client) = makeSUT()
-        let exp = expectation(description: "Wait for fetch completion")
-        var returnedError: Error?
+        let result = (MockServer.loadLocalJSON("BadJSON"), Self.httpResponse(code: 200))
+        let (sut, _) = makeSUT(result: .success(result))
 
         // When
-        sut.fetchProducts(limit: 20, skip: 20)
-            .sink { completion in
-                switch completion {
-                case .failure(let error):
-                    returnedError = error
-                    exp.fulfill()
-                default:
-                    XCTFail("Expected fetch to fail with invalidData error")
-                }
-            } receiveValue: { result in
-                XCTFail("Expected fetch to fail with error")
-            }
-            .store(in: &cancellables)
-
-        let clientError = NSError(domain: "Test", code: 0)
-        client.complete(with: clientError)
-
-        wait(for: [exp], timeout: 1.0)
-
-        // Then
-        XCTAssertNotNil(returnedError)
+        do {
+            _ = try await sut.fetchProducts(limit: 30, skip: 0)
+            XCTFail("Expected error: \(NetworkError.invalidData)")
+        } catch {
+            // Then
+            XCTAssertEqual(error as? NetworkError, .invalidData)
+        }
     }
 }
 
 // MARK: - Load Feed Success Tests
 
 extension ProductServiceTests {
-    func test_fetchProducts_onSuccess_returnsProducts() {
+    func test_fetchProducts_onSuccess_returnsData() async throws {
         // Given
-        let (sut, client) = makeSUT()
-        let exp = expectation(description: "Wait for fetch completion")
-        var returnedProducts: [Product] = []
+        let validData = MockServer.loadLocalJSON("Products")
+        let validResponse = Self.httpResponse(code: 200)
+        let (sut, _) = makeSUT(result: .success((validData, validResponse)))
 
         // When
-        sut.fetchProducts(limit: 20, skip: 20)
-            .sink { _ in } receiveValue: { response in
-                returnedProducts = response.products
-                exp.fulfill()
-            }
-            .store(in: &cancellables)
-
-        let data = MockServer.loadLocalJSON("Products")
-        let expectedResponse = try! JSONDecoder().decode(ProductResponse.self, from: data)
-        client.complete(withStatusCode: 200, data: data)
-        wait(for: [exp], timeout: 1.0)
+        let receivedData = try await sut.fetchProducts(limit: 30, skip: 0)
+        let expectedProducts = try! JSONDecoder().decode(ProductResponse.self, from: validData)
 
         // Then
-        XCTAssertEqual(returnedProducts, expectedResponse.products)
+        XCTAssertEqual(receivedData.products, expectedProducts.products)
     }
 }
 
 // MARK: - Make SUT
 
 private extension ProductServiceTests {
-    func makeSUT() -> (sut: ProductService, client: HTTPClientSpy)  {
-        let client = HTTPClientSpy()
+    func makeSUT(
+        result: Result<(Data, HTTPURLResponse), Error> = .success(anyValidResponse())
+    ) -> (sut: ProductService, client: HTTPClientSpy)  {
+        let client = HTTPClientSpy(result: result)
         let sut = ProductService(client: client)
         return (sut, client)
+    }
+}
+
+// MARK: - Helpers
+
+private extension ProductServiceTests {
+    struct AnyError: Error {}
+
+    static func anyError() -> Error {
+        AnyError()
+    }
+
+    static func anyValidResponse() -> (Data, HTTPURLResponse) {
+        (Data(), httpResponse(code: 200))
+    }
+
+    static func httpResponse(url: URL = anyURL(), code: Int) -> HTTPURLResponse {
+        .init(url: url, statusCode: code, httpVersion: nil, headerFields: nil)!
+    }
+
+    static func anyURL() -> URL {
+        return URL(string: "http://any-url.com")!
     }
 }

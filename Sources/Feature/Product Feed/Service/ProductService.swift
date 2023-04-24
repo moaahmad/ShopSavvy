@@ -9,7 +9,7 @@ import Combine
 import Foundation
 
 protocol ProductServicing {
-    func fetchProducts(limit: Int, skip: Int) -> Future<ProductResponse, Error>
+    func fetchProducts(limit: Int, skip: Int) async throws -> ProductResponse
 }
 
 struct ProductService: ProductServicing {
@@ -21,7 +21,7 @@ struct ProductService: ProductServicing {
     // MARK: - Initializer
 
     init(
-        client: HTTPClient = URLSessionHTTPClient(),
+        client: HTTPClient = URLSession.shared,
         urlRequestPool: URLRequestPooling = URLRequestPool()
     ) {
         self.client = client
@@ -30,40 +30,30 @@ struct ProductService: ProductServicing {
 
     // MARK: - ProductServicing Functions
 
-    func fetchProducts(limit: Int, skip: Int) -> Future<ProductResponse, Error> {
+    func fetchProducts(limit: Int, skip: Int) async throws -> ProductResponse {
         let request = urlRequestPool.fetchProductsRequest(limit: limit, skip: skip)
-        return Future<ProductResponse, Error> { promise in
-            client.performRequest(request) { result in
-                switch result {
-                case let .success((data, response)):
-                    handleFetchProductsSuccessResponse(
-                        data: data,
-                        response: response,
-                        promise: promise
-                    )
-                case .failure(let error):
-                    promise(.failure(error))
-                }
-            }
+
+        guard let (data, response) = try? await client.performRequest(request) else {
+            throw NetworkError.connectivity
         }
+
+        return try handleFetchProductsSuccessResponse(data: data, response: response)
     }
 }
 
 private extension ProductService {
     func handleFetchProductsSuccessResponse(
         data: Data,
-        response: HTTPURLResponse,
-        promise: (Result<ProductResponse, Error>) -> Void
-    ) {
+        response: HTTPURLResponse
+    ) throws -> ProductResponse {
+        guard response.statusCode == 200 else {
+            throw NetworkError.invalidResponse
+        }
+
         do {
-            if response.statusCode != 200 {
-                promise(.failure(ResponseError.invalidResponse))
-            } else {
-                let response = try JSONDecoder().decode(ProductResponse.self, from: data)
-                promise(.success(response))
-            }
+            return try JSONDecoder().decode(ProductResponse.self, from: data)
         } catch {
-            promise(.failure(ResponseError.invalidData))
+            throw NetworkError.invalidData
         }
     }
 }

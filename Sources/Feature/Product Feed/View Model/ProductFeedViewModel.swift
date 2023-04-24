@@ -38,8 +38,10 @@ final class ProductFeedViewModel: ProductFeedViewModeling & ObservableObject {
 extension ProductFeedViewModel {
     func loadFeed() {
         isRefreshing = true
-        fetchProducts { [weak self] in
-            self?.isRefreshing = false
+        Task {
+            await fetchProducts { [weak self] in
+                self?.isRefreshing = false
+            }
         }
     }
 
@@ -48,7 +50,9 @@ extension ProductFeedViewModel {
         let thresholdIndex = products.index(products.endIndex, offsetBy: -4)
         if let lastIndex = products.firstIndex(where: { $0.id == currentItem.id }),
             lastIndex >= thresholdIndex {
-            fetchProducts()
+            Task {
+                await fetchProducts()
+            }
         }
     }
 }
@@ -56,44 +60,31 @@ extension ProductFeedViewModel {
 // MARK: - Fetch Products
 
 private extension ProductFeedViewModel {
-    func fetchProducts(completion: (() -> Void)? = nil) {
+    @MainActor private func fetchProducts(
+        completion: (() -> Void)? = nil
+    ) async {
         guard !isFetching && !isLastPage else {
             return
         }
         isFetching = true
 
-        let response = service.fetchProducts(
-            limit: Self.pageLimit,
-            skip: isRefreshing ? 0 : products.count
-        )
-
-        response
-            .receive(on: DispatchQueue.main)
-            .map { $0.products }
-            .sink { [weak self] completion in
-                guard let self else { return }
-                self.handleCompletion(completion: completion)
-            } receiveValue: { [weak self] in
-                guard let self else { return }
-                self.handleResponse(products: $0)
-                completion?()
-            }
-            .store(in: &cancellables)
-    }
-
-    func handleCompletion(completion: Subscribers.Completion<Error>) {
-        // Update states
-        self.isLoading = false
-        self.isFetching = false
-        self.isRefreshing = false
-
-        // If there's an error, log it to the console for now
-        if case let .failure(error) = completion {
+        do {
+            let productResponse = try await service.fetchProducts(
+                limit: Self.pageLimit,
+                skip: isRefreshing ? 0 : products.count
+            )
+            handleResponse(products: productResponse.products)
+            completion?()
+        } catch {
             print("Error fetching products: \(error.localizedDescription)")
         }
     }
 
     func handleResponse(products: [Product]) {
+        // Update states
+        self.isLoading = false
+        self.isFetching = false
+
         // If refreshing, we only want to see the first page results
         if self.isRefreshing { self.products = [] }
         self.products.append(contentsOf: products)
