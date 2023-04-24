@@ -1,7 +1,7 @@
 # ShopSavvy
 - An iOS app that makes use of the [DummyJSON](https://dummyjson.com/docs) API to fetch products
-  - Utilises SwiftUI & Combine
-  - Compiles and runs on Xcode 14.0
+  - Utilises SwiftUI, Combine, and Async/Await
+  - Compiles and runs on Xcode 14.3
 
 ## Requirements
 - [x] Show a list of products
@@ -18,4 +18,4 @@
 - Other things I'd like to have spent time on include: Error handling, ~String localization~, Snapshot testing, UI testing, and iPad support.
 
 ## Current App State
-![Simulator Screen Recording - iPhone 14 Pro - 2023-04-17 at 02 19 53](https://user-images.githubusercontent.com/23720725/232356502-9df6f723-d60f-4c2d-98c8-0c1dbd4dfada.gif)
+![Simulator Screen Recording - iPhone 14 Pro - 2023-04-24 at 23 17 47](https://user-images.githubusercontent.com/23720725/234128602-4a14c8e3-2c9b-4b45-839d-cbde604b1792.gif)
