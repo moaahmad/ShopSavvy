@@ -14,17 +14,17 @@ final class ProductFeedViewModel: ProductFeedViewModeling & ObservableObject {
     private static let pageLimit = 20
     private let service: ProductServicing
 
-    private var cancellables: Set<AnyCancellable> = .init()
+    private var cancellables = Set<AnyCancellable>()
     private var isFetching = false
     private var isRefreshing = false
     private var isLastPage = false
 
-    lazy var title: String = "product_feed_title".localized()
+    lazy var title = "product_feed_title".localized()
 
     // MARK: - Published Properties
 
-    @Published var isLoading: Bool = true
-    @Published var products: [Product] = []
+    @Published var isLoading = true
+    @Published var products = [Product]()
 
     // MARK: - Initializer
 

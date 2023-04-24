@@ -79,6 +79,7 @@ private extension ProductCardView {
 
 struct ProductCardView_Previews: PreviewProvider {
     final class PreviewCartViewModel: ShoppingCartViewModeling {
+        var title: String = ""
         var emptyText: String = ""
         var subtotalTitleText: String = ""
         var subtotalValueText: String = ""
@@ -87,7 +88,8 @@ struct ProductCardView_Previews: PreviewProvider {
         var productsInCart: [Product] = []
 
         func addOrRemoveProduct(_ product: Product, action: CartAction) {}
-        func productInCartCount(_ product: Product) -> Int { 0 }
+        func productInCartQuantity(_ product: Product) -> String { "" }
+        func resetShoppingCart() {}
     }
 
     static var previews: some View {

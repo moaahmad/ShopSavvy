@@ -15,13 +15,33 @@ struct ShopSavvyApp: App {
 
     var body: some Scene {
         WindowGroup {
-            NavigationStack {
-                ProductFeedView(
-                    productFeedViewModel: productFeedViewModel,
-                    shoppingCartViewModel: shoppingCartViewModel
-                )
-                .environment(\.sizeCategory, sizeCategory)
+            TabView {
+                // Product Feed
+                NavigationStack {
+                    ProductFeedView(
+                        productFeedViewModel: productFeedViewModel,
+                        shoppingCartViewModel: shoppingCartViewModel
+                    )
+                }
+                .tag(0)
+                .tabItem {
+                    Label(
+                        productFeedViewModel.title,
+                        systemImage: "list.bullet.below.rectangle"
+                    )
+                }
+
+                // Shopping Cart
+                NavigationStack {
+                    ShoppingCartView(viewModel: shoppingCartViewModel)
+                }
+                .tag(1)
+                .tabItem {
+                    Label(shoppingCartViewModel.title, systemImage: "cart")
+                }
+                .badge(shoppingCartViewModel.cartCount)
             }
+            .environment(\.sizeCategory, sizeCategory)
         }
     }
 }

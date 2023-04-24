@@ -10,11 +10,13 @@ import Foundation
 protocol ShoppingCartViewModeling {
     var productsInCart: [Product] { get }
     var cartCount: Int { get }
+    var title: String { get }
     var emptyText: String { get }
     var subtotalTitleText: String { get }
     var subtotalValueText: String { get }
     var buyNowText: String { get }
 
     func addOrRemoveProduct(_ product: Product, action: CartAction)
-    func productInCartCount(_ product: Product) -> Int
+    func productInCartQuantity(_ product: Product) -> String
+    func resetShoppingCart()
 }

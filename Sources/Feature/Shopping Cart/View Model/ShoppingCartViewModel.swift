@@ -11,9 +11,10 @@ import Foundation
 final class ShoppingCartViewModel: ShoppingCartViewModeling & ObservableObject {
     // MARK: - Properties
 
-    private var cancellables: Set<AnyCancellable> = .init()
-    private var subtotal: Int = 0
+    private var cancellables = Set<AnyCancellable>()
+    private var subtotal = 0
 
+    lazy var title = "shopping_cart_title".localized()
     lazy var emptyText = "shopping_cart_empty".localized()
     lazy var subtotalTitleText = "shopping_cart_subtotal".localized()
     lazy var subtotalValueText = "shopping_cart_value".localized(0)
@@ -23,8 +24,8 @@ final class ShoppingCartViewModel: ShoppingCartViewModeling & ObservableObject {
 
     @Published private var shoppingCart: [Product: Int] = [:]
 
-    @Published var productsInCart: [Product] = []
-    @Published var cartCount: Int = 0
+    @Published var productsInCart = [Product]()
+    @Published var cartCount = 0
 
     // MARK: - Initializer
 
@@ -55,8 +56,13 @@ final class ShoppingCartViewModel: ShoppingCartViewModeling & ObservableObject {
         }
     }
 
-    func productInCartCount(_ product: Product) -> Int {
-        shoppingCart[product].orZero
+    func productInCartQuantity(_ product: Product) -> String {
+        let quantity = shoppingCart[product].orZero
+        return "shopping_cart_quantity".localized(String(quantity))
+    }
+
+    func resetShoppingCart() {
+        shoppingCart.removeAll()
     }
 }
 
@@ -91,7 +97,7 @@ private extension ShoppingCartViewModel {
             }
             .sink { [weak self] in
                 self?.subtotal = $0
-                self?.subtotalValueText = "shopping_cart_value".localized($0.description)
+                self?.subtotalValueText = "shopping_cart_value".localized(String($0))
             }
             .store(in: &cancellables)
 

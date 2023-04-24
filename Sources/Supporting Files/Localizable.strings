@@ -8,7 +8,9 @@
 
 "product_feed_title" = "Products";
 
+"shopping_cart_title" = "Cart";
 "shopping_cart_empty" = "No products are currently in your cart";
 "shopping_cart_subtotal" = "Subtotal";
 "shopping_cart_value" = "£%@";
+"shopping_cart_quantity" = "Quantity: x%@";
 "shopping_cart_buy_now" = "Buy Now";

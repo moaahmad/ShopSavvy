@@ -9,10 +9,11 @@ import SwiftUI
 
 struct ShoppingCartView<ViewModel: ShoppingCartViewModeling & ObservableObject>: View {
     @ObservedObject var viewModel: ViewModel
+    @State private var showingBuyNow = false
 
     var body: some View {
-        VStack(alignment: .leading) {
-            ScrollView {
+        VStack(alignment: .leading, spacing: .zero) {
+            ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading) {
                     // Header View
                     ShoppingCartHeaderView(viewModel: viewModel)
@@ -20,6 +21,9 @@ struct ShoppingCartView<ViewModel: ShoppingCartViewModeling & ObservableObject>:
                     if viewModel.productsInCart.isEmpty {
                         // Empty State
                         Text(viewModel.emptyText)
+                            .lineSpacing(.Spacer.sm)
+                            .foregroundColor(.secondary)
+                            .padding(.top, .Spacer.sm)
                     } else {
                         // Content View
                         LazyVStack(alignment: .leading) {
@@ -29,35 +33,57 @@ struct ShoppingCartView<ViewModel: ShoppingCartViewModeling & ObservableObject>:
                             ) { index, product in
                                 ShoppingCartCardView(
                                     product: product,
-                                    count: viewModel.productInCartCount(product),
+                                    quantity: viewModel.productInCartQuantity(product),
                                     onIncrement: { viewModel.addOrRemoveProduct(product, action: .add) },
                                     onDecrement: { viewModel.addOrRemoveProduct(product, action: .remove) }
                                 )
                                 .padding(.vertical, .Spacer.xxs)
 
                                 if index != viewModel.productsInCart.count - 1 {
-                                    Divider()
-                                        .foregroundColor(Color(uiColor: .tertiarySystemBackground))
-                                        .padding(.horizontal, .Spacer.sm)
+                                    SectionDividerView(padding: .Spacer.sm)
                                 }
                             }
                         }
                     }
                 }
             }
-            .padding(.top, .Spacer.lg)
 
             // Buy Now CTA
-            BuyNowButtonView(viewModel: viewModel)
+            SectionDividerView(padding: -.Spacer.sm)
+            BuyNowButtonView(viewModel: viewModel, showingBuyNow: $showingBuyNow)
+                .padding(.vertical, .Spacer.xs)
         }
         .animation(.default, value: viewModel.productsInCart)
         .padding(.horizontal, .Spacer.sm)
+        .navigationTitle(viewModel.title)
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                ResetCartToolbarButtonView(viewModel: viewModel)
+                    .disabled(viewModel.cartCount == 0)
+            }
+        }
+        .alert(isPresented: $showingBuyNow) {
+            Alert(
+                title: Text("Your delivery is on its way! 🙌🏽"),
+                message: Text("Shopping cart will now be cleared"),
+                primaryButton: .destructive(
+                    Text("Reset")
+                ) {
+                    viewModel.resetShoppingCart()
+                },
+                secondaryButton: .cancel()
+            )
+        }
+
     }
 }
 
 // MARK: - Subviews
 
 private extension ShoppingCartView {
+    // MARK: - Shopping Cart Header
+
     struct ShoppingCartHeaderView: View {
         @ObservedObject var viewModel: ViewModel
 
@@ -75,9 +101,11 @@ private extension ShoppingCartView {
         }
     }
 
+    // MARK: - Shopping Cart Card
+
     struct ShoppingCartCardView: View {
         let product: Product
-        let count: Int
+        let quantity: String
         let onIncrement: () -> Void
         let onDecrement: () -> Void
 
@@ -86,27 +114,26 @@ private extension ShoppingCartView {
                 if let imageURL = product.thumbnailURL {
                     ImageView(imageURL: imageURL)
                         .aspectRatio(contentMode: .fill)
-                        .frame(width: 40, height: 40)
+                        .frame(width: .Image.iconSize, height: .Image.iconSize)
                         .clipShape( Circle() )
                 }
 
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: .Spacer.xxxs) {
                     HStack {
                         Text(product.title.orEmpty)
-                            .lineLimit(1)
-                            .font(.callout)
+                            .font(.body)
                             .fontWeight(.semibold)
-                        
-                        Text("(x\(count))")
-                            .font(.footnote)
-                            .foregroundColor(.secondary)
                     }
 
                     PriceInfoView(
                         price: product.price.orZero,
                         discountPercentage: product.discountPercentage,
-                        font: .footnote
+                        font: .callout
                     )
+
+                    Text(quantity)
+                        .foregroundColor(.secondary)
+                        .font(.footnote)
                 }
 
                 Stepper(
@@ -123,18 +150,20 @@ private extension ShoppingCartView {
         }
     }
 
+    // MARK: - Buy Now Button
+
     struct BuyNowButtonView: View {
         @ObservedObject var viewModel: ViewModel
+        @Binding var showingBuyNow: Bool
 
         var body: some View {
             Button {
-                // TODO: Maybe present an alert here?
-                print("Buy now tapped")
+                showingBuyNow.toggle()
             } label: {
                 Text(viewModel.buyNowText)
                     .font(.body)
                     .fontWeight(.semibold)
-                    .frame(height: 50)
+                    .frame(height: .Button.height)
                     .frame(maxWidth: .infinity)
                     .overlay(
                         RoundedRectangle(cornerRadius: .Image.cornerRadius)
@@ -145,12 +174,38 @@ private extension ShoppingCartView {
             .disabled(viewModel.productsInCart.isEmpty)
         }
     }
+
+    // MARK: - Reset Button
+
+    struct ResetCartToolbarButtonView: View {
+        @ObservedObject var viewModel: ViewModel
+
+        var body: some View {
+            Button {
+                viewModel.resetShoppingCart()
+            } label: {
+                Text("Reset")
+                    .font(.footnote)
+                    .fontWeight(.semibold)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, .Spacer.xxxs)
+                    .padding(.horizontal, .Spacer.xxs)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: .Image.cornerRadius)
+                            .stroke(viewModel.cartCount > 0 ? .primary : .secondary, lineWidth: 1)
+                    )
+                    .foregroundColor(viewModel.cartCount > 0 ? .primary : .secondary)
+                    .animation(.default, value: viewModel.cartCount)
+            }
+        }
+    }
 }
 
 // MARK: - Previews
 
 struct ShoppingCartView_Previews: PreviewProvider {
     final class PreviewViewModel: ShoppingCartViewModeling & ObservableObject {
+        var title: String = ""
         var emptyText: String = ""
         var subtotalTitleText: String = ""
         var subtotalValueText: String = ""
@@ -159,7 +214,8 @@ struct ShoppingCartView_Previews: PreviewProvider {
         var cartCount: Int = 0
 
         func addOrRemoveProduct(_ product: Product, action: CartAction) {}
-        func productInCartCount(_ product: Product) -> Int { 0 }
+        func productInCartQuantity(_ product: Product) -> String { "" }
+        func resetShoppingCart() {}
     }
 
     static var previews: some View {
