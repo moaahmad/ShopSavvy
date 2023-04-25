@@ -27,6 +27,14 @@
 		4E002EDD29ECC3DA00246C5F /* URLRequestPoolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E002EDC29ECC3DA00246C5F /* URLRequestPoolTests.swift */; };
 		4E002EE229ECC4AB00246C5F /* ProductServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E002EE129ECC4AB00246C5F /* ProductServiceTests.swift */; };
 		4E002EE529ECC5E200246C5F /* ProductFeedViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E002EE429ECC5E200246C5F /* ProductFeedViewModelTests.swift */; };
+		4E08159329F83EB600FB16A8 /* ImageViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E08159229F83EB500FB16A8 /* ImageViewTests.swift */; };
+		4E08159729F844E200FB16A8 /* ProductFeedViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E08159629F844E200FB16A8 /* ProductFeedViewTests.swift */; };
+		4E250F2729F82DCA006B60A6 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 4E250F2629F82DCA006B60A6 /* SnapshotTesting */; };
+		4E250F2B29F833E0006B60A6 /* ProductCardViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E250F2A29F833E0006B60A6 /* ProductCardViewTests.swift */; };
+		4E250F2D29F83A34006B60A6 /* RatingViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E250F2C29F83A34006B60A6 /* RatingViewTests.swift */; };
+		4E250F2F29F83AC9006B60A6 /* PriceInfoViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E250F2E29F83AC9006B60A6 /* PriceInfoViewTests.swift */; };
+		4E250F3129F83BA9006B60A6 /* SectionDividerViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E250F3029F83BA9006B60A6 /* SectionDividerViewTests.swift */; };
+		4E250F3329F83C60006B60A6 /* ShoppingCartViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E250F3229F83C60006B60A6 /* ShoppingCartViewTests.swift */; };
 		4EADC1C229F42547006B97EF /* ShoppingCartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EADC1C129F42547006B97EF /* ShoppingCartViewModel.swift */; };
 		4EADC1C429F43185006B97EF /* CartAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EADC1C329F43185006B97EF /* CartAction.swift */; };
 		4EADC1C729F4801C006B97EF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4EADC1C629F4801C006B97EF /* Localizable.strings */; };
@@ -83,6 +91,13 @@
 		4E002EDC29ECC3DA00246C5F /* URLRequestPoolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestPoolTests.swift; sourceTree = "<group>"; };
 		4E002EE129ECC4AB00246C5F /* ProductServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductServiceTests.swift; sourceTree = "<group>"; };
 		4E002EE429ECC5E200246C5F /* ProductFeedViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductFeedViewModelTests.swift; sourceTree = "<group>"; };
+		4E08159229F83EB500FB16A8 /* ImageViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewTests.swift; sourceTree = "<group>"; };
+		4E08159629F844E200FB16A8 /* ProductFeedViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductFeedViewTests.swift; sourceTree = "<group>"; };
+		4E250F2A29F833E0006B60A6 /* ProductCardViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCardViewTests.swift; sourceTree = "<group>"; };
+		4E250F2C29F83A34006B60A6 /* RatingViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingViewTests.swift; sourceTree = "<group>"; };
+		4E250F2E29F83AC9006B60A6 /* PriceInfoViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceInfoViewTests.swift; sourceTree = "<group>"; };
+		4E250F3029F83BA9006B60A6 /* SectionDividerViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionDividerViewTests.swift; sourceTree = "<group>"; };
+		4E250F3229F83C60006B60A6 /* ShoppingCartViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewTests.swift; sourceTree = "<group>"; };
 		4EADC1C129F42547006B97EF /* ShoppingCartViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewModel.swift; sourceTree = "<group>"; };
 		4EADC1C329F43185006B97EF /* CartAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartAction.swift; sourceTree = "<group>"; };
 		4EADC1C629F4801C006B97EF /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
@@ -112,6 +127,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E250F2729F82DCA006B60A6 /* SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,6 +189,7 @@
 		4E002EAB29EA57F400246C5F /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				4E250F2829F833B4006B60A6 /* Design System */,
 				4E002EC229EC752000246C5F /* Feature */,
 				4E002EC429EC753800246C5F /* Stubs */,
 				4E002EC129EC750500246C5F /* Utilities */,
@@ -271,8 +288,45 @@
 			children = (
 				4E002EC329EC752A00246C5F /* Service */,
 				4EADC1CA29F5CDD3006B97EF /* View Model */,
+				4E08159429F844AD00FB16A8 /* View */,
 			);
 			path = "Product Feed";
+			sourceTree = "<group>";
+		};
+		4E08159429F844AD00FB16A8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4E08159629F844E200FB16A8 /* ProductFeedViewTests.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4E08159529F844BC00FB16A8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4E250F3229F83C60006B60A6 /* ShoppingCartViewTests.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4E250F2829F833B4006B60A6 /* Design System */ = {
+			isa = PBXGroup;
+			children = (
+				4E250F2929F833C3006B60A6 /* Reusable Components */,
+			);
+			path = "Design System";
+			sourceTree = "<group>";
+		};
+		4E250F2929F833C3006B60A6 /* Reusable Components */ = {
+			isa = PBXGroup;
+			children = (
+				4E250F2A29F833E0006B60A6 /* ProductCardViewTests.swift */,
+				4E250F2C29F83A34006B60A6 /* RatingViewTests.swift */,
+				4E250F2E29F83AC9006B60A6 /* PriceInfoViewTests.swift */,
+				4E250F3029F83BA9006B60A6 /* SectionDividerViewTests.swift */,
+				4E08159229F83EB500FB16A8 /* ImageViewTests.swift */,
+			);
+			path = "Reusable Components";
 			sourceTree = "<group>";
 		};
 		4EADC1C529F4319E006B97EF /* Model */ = {
@@ -427,6 +481,7 @@
 			isa = PBXGroup;
 			children = (
 				4EFAB36629F81E080015A165 /* View Model */,
+				4E08159529F844BC00FB16A8 /* View */,
 			);
 			path = "Shopping Cart";
 			sourceTree = "<group>";
@@ -456,6 +511,9 @@
 				4E002EAF29EA57F400246C5F /* PBXTargetDependency */,
 			);
 			name = Tests;
+			packageProductDependencies = (
+				4E250F2629F82DCA006B60A6 /* SnapshotTesting */,
+			);
 			productName = Tests;
 			productReference = 4E002EAA29EA57F400246C5F /* Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -511,6 +569,7 @@
 			mainGroup = 4EDE097929E70A4C00FC03CE;
 			packageReferences = (
 				4EDE09C029E725F000FC03CE /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				4E250F2529F82DCA006B60A6 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
 			);
 			productRefGroup = 4EDE098329E70A4C00FC03CE /* Products */;
 			projectDirPath = "";
@@ -549,16 +608,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E08159329F83EB600FB16A8 /* ImageViewTests.swift in Sources */,
 				4EFAB36829F81E1E0015A165 /* ShoppingCartViewModelTests.swift in Sources */,
+				4E250F3329F83C60006B60A6 /* ShoppingCartViewTests.swift in Sources */,
 				4E002EC629ECC0D100246C5F /* MockServer.swift in Sources */,
 				4E002EE229ECC4AB00246C5F /* ProductServiceTests.swift in Sources */,
+				4E250F2D29F83A34006B60A6 /* RatingViewTests.swift in Sources */,
 				4E002EDB29ECC33400246C5F /* URL+Extensions.swift in Sources */,
 				4E002ED529ECC2A000246C5F /* URLPoolTests.swift in Sources */,
 				4E002ECB29ECC10F00246C5F /* HTTPClientSpy.swift in Sources */,
 				4E002EE529ECC5E200246C5F /* ProductFeedViewModelTests.swift in Sources */,
+				4E250F3129F83BA9006B60A6 /* SectionDividerViewTests.swift in Sources */,
 				4E002EDD29ECC3DA00246C5F /* URLRequestPoolTests.swift in Sources */,
 				4E002ED929ECC31800246C5F /* XCTestCase+Extensions.swift in Sources */,
+				4E250F2F29F83AC9006B60A6 /* PriceInfoViewTests.swift in Sources */,
 				4E002ECD29ECC14000246C5F /* MockProductService.swift in Sources */,
+				4E08159729F844E200FB16A8 /* ProductFeedViewTests.swift in Sources */,
+				4E250F2B29F833E0006B60A6 /* ProductCardViewTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -866,6 +932,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		4E250F2529F82DCA006B60A6 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing";
+			requirement = {
+				kind = exactVersion;
+				version = 1.11.0;
+			};
+		};
 		4EDE09C029E725F000FC03CE /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
@@ -877,6 +951,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4E250F2629F82DCA006B60A6 /* SnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4E250F2529F82DCA006B60A6 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTesting;
+		};
 		4EDE09C129E725F000FC03CE /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4EDE09C029E725F000FC03CE /* XCRemoteSwiftPackageReference "Kingfisher" */;

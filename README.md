@@ -2,6 +2,8 @@
 - An iOS app that makes use of the [DummyJSON](https://dummyjson.com/docs) API to fetch products
   - Utilises SwiftUI, Combine, and Async/Await
   - Compiles and runs on Xcode 14.3
+  - Unit Test Coverage: 89.9% 
+    - NB, The snapshot tests may fail on first run, which is expected. Run them again and they should pass.
 
 ## Requirements
 - [x] Show a list of products

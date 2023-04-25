@@ -224,8 +224,17 @@ private extension ShoppingCartViewModelTests {
 
 // MARK: - Helpers
 
-private extension Product {
+extension Product {
     static func anyProduct() -> Product {
-        .init(id: 123, title: "iPhone 14", price: 1000, stock: 10)
+        .init(
+            id: 123,
+            title: "iPhone 14",
+            description: "iPhone 14 has the same incredible chip that's in iPhone 13 Pro. A15 Bionic, with a 5‑core GPU, powers all the latest features and makes graphically intense games and AR apps feel ultra-fluid. An updated internal design delivers better thermal efficiency, so you can stay in the action longer.",
+            price: 1000,
+            discountPercentage: 5.0,
+            rating: 4.5,
+            stock: 10,
+            thumbnail: "https://i.dummyjson.com/data/products/2/3.jpg"
+        )
     }
 }

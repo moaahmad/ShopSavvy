@@ -9,8 +9,8 @@ import SwiftUI
 
 struct ProductCardView: View {
     let product: Product
-    let shoppingCartViewModel: ShoppingCartViewModeling
     let geometry: GeometryProxy
+    let buttonAction: () -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: .Spacer.xxs) {
@@ -36,7 +36,7 @@ struct ProductCardView: View {
                 Spacer()
 
                 Button {
-                    shoppingCartViewModel.addOrRemoveProduct(product, action: .add)
+                    buttonAction()
                     UIImpactFeedbackGenerator(style: .light).impactOccurred()
                 } label: {
                     Image(systemName: ImageAsset.plus)
@@ -96,8 +96,8 @@ struct ProductCardView_Previews: PreviewProvider {
         GeometryReader { geometry in
             ProductCardView(
                 product: Product(),
-                shoppingCartViewModel: PreviewCartViewModel(),
-                geometry: geometry
+                geometry: geometry,
+                buttonAction: {}
             )
         }
     }

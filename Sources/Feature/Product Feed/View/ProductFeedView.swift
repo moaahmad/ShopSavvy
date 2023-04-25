@@ -13,8 +13,6 @@ struct ProductFeedView<
 >: View {
     // MARK: - Properties
 
-    @State private var showingSettings = false
-
     @ObservedObject var productFeedViewModel: ProductFeed
     @ObservedObject var shoppingCartViewModel: ShoppingCart
 
@@ -28,10 +26,6 @@ struct ProductFeedView<
         .animation(.easeInOut, value: productFeedViewModel.isLoading)
         .onAppear { productFeedViewModel.loadFeed() }
         .navigationTitle(productFeedViewModel.title)
-        .sheet(isPresented: $showingSettings) {
-            ShoppingCartView(viewModel: shoppingCartViewModel)
-                .presentationDetents([.medium, .large])
-        }
     }
 }
 
@@ -47,9 +41,10 @@ extension ProductFeedView {
                 List(productFeedViewModel.products, id: \.id) { product in
                     ProductCardView(
                         product: product,
-                        shoppingCartViewModel: shoppingCartViewModel,
                         geometry: geometry
-                    )
+                    ) {
+                        shoppingCartViewModel.addOrRemoveProduct(product, action: .add)
+                    }
                     .onAppear {
                         productFeedViewModel.loadMoreContentIfNeeded(currentItem: product)
                     }
@@ -65,30 +60,6 @@ extension ProductFeedView {
                 }
             }
         }
-    }
-
-    struct ToolbarSettingsButton: View {
-        @Binding var showingSettings: Bool
-
-        var body: some View {
-            Button {
-                showingSettings.toggle()
-            } label: {
-                Image(systemName: ImageAsset.settings)
-                    .font(.body)
-                    .fontWeight(.bold)
-            }
-            .accessibilityLabel("Settings button")
-        }
-    }
-}
-
-// MARK: - Constants
-
-private extension ProductFeedView.ToolbarSettingsButton {
-    struct ImageAsset {
-        private init() {}
-        static var settings: String { "gearshape" }
     }
 }
 
