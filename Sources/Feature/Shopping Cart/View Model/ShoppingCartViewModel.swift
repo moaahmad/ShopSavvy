@@ -17,7 +17,7 @@ final class ShoppingCartViewModel: ShoppingCartViewModeling & ObservableObject {
     lazy var title = "shopping_cart_title".localized()
     lazy var emptyText = "shopping_cart_empty".localized()
     lazy var subtotalTitleText = "shopping_cart_subtotal".localized()
-    lazy var subtotalValueText = "shopping_cart_value".localized(0)
+    lazy var subtotalValueText = "shopping_cart_value".localized(String(0))
     lazy var buyNowText = "shopping_cart_buy_now".localized()
 
     // MARK: - Published Properties
@@ -63,6 +63,8 @@ final class ShoppingCartViewModel: ShoppingCartViewModeling & ObservableObject {
 
     func resetShoppingCart() {
         shoppingCart.removeAll()
+        productsInCart = []
+        cartCount = 0
     }
 }
 
