@@ -37,15 +37,6 @@ struct ProductService: ProductServicing {
             throw NetworkError.connectivity
         }
 
-        return try handleFetchProductsSuccessResponse(data: data, response: response)
-    }
-}
-
-private extension ProductService {
-    func handleFetchProductsSuccessResponse(
-        data: Data,
-        response: HTTPURLResponse
-    ) throws -> ProductResponse {
         guard response.statusCode == 200 else {
             throw NetworkError.invalidResponse
         }
