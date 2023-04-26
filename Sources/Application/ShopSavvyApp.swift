@@ -22,13 +22,11 @@ struct ShopSavvyApp: App {
                         productFeedViewModel: productFeedViewModel,
                         shoppingCartViewModel: shoppingCartViewModel
                     )
+                    .errorAlert(error: $productFeedViewModel.error)
                 }
                 .tag(0)
                 .tabItem {
-                    Label(
-                        productFeedViewModel.title,
-                        systemImage: "list.bullet.below.rectangle"
-                    )
+                    Label(productFeedViewModel.title, systemImage: "list.bullet.below.rectangle")
                 }
 
                 // Shopping Cart

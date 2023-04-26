@@ -25,6 +25,7 @@ final class ProductFeedViewModel: ProductFeedViewModeling & ObservableObject {
 
     @Published var isLoading = true
     @Published var products = [Product]()
+    @Published var error: Error?
 
     // MARK: - Initializer
 
@@ -36,7 +37,8 @@ final class ProductFeedViewModel: ProductFeedViewModeling & ObservableObject {
 // MARK: - ProductFeedViewModeling Functions
 
 extension ProductFeedViewModel {
-    func loadFeed() {
+    func loadFeed(isPullToRefresh: Bool = false) {
+        guard products.isEmpty || isPullToRefresh else { return }
         isRefreshing = true
         Task {
             await fetchProducts { [weak self] in
@@ -49,10 +51,8 @@ extension ProductFeedViewModel {
         guard let currentItem else { return }
         let thresholdIndex = products.index(products.endIndex, offsetBy: -4)
         if let lastIndex = products.firstIndex(where: { $0.id == currentItem.id }),
-            lastIndex >= thresholdIndex {
-            Task {
-                await fetchProducts()
-            }
+           lastIndex >= thresholdIndex {
+            Task { await fetchProducts() }
         }
     }
 }
@@ -63,9 +63,7 @@ private extension ProductFeedViewModel {
     @MainActor private func fetchProducts(
         completion: (() -> Void)? = nil
     ) async {
-        guard !isFetching && !isLastPage else {
-            return
-        }
+        guard !isFetching && !isLastPage else { return }
         isFetching = true
 
         do {
@@ -76,7 +74,9 @@ private extension ProductFeedViewModel {
             handleResponse(products: productResponse.products)
             completion?()
         } catch {
-            print("Error fetching products: \(error.localizedDescription)")
+            isLoading = false
+            isFetching = false
+            self.error = error
         }
     }
 

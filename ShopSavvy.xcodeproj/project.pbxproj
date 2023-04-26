@@ -40,12 +40,15 @@
 		4EADC1C729F4801C006B97EF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4EADC1C629F4801C006B97EF /* Localizable.strings */; };
 		4EADC1C929F48089006B97EF /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EADC1C829F48089006B97EF /* String+Extensions.swift */; };
 		4EADC1CC29F6CDFB006B97EF /* SectionDividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EADC1CB29F6CDFB006B97EF /* SectionDividerView.swift */; };
+		4EB488CA29F8993500096CF7 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB488C929F8993500096CF7 /* View+Extensions.swift */; };
+		4EB488CD29F8B28500096CF7 /* LocalizedAlertError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB488CC29F8B28500096CF7 /* LocalizedAlertError.swift */; };
+		4EB488CF29F8B2F000096CF7 /* AlertText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB488CE29F8B2F000096CF7 /* AlertText.swift */; };
 		4EDE098629E70A4C00FC03CE /* ShopSavvyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDE098529E70A4C00FC03CE /* ShopSavvyApp.swift */; };
 		4EDE098A29E70A4C00FC03CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EDE098929E70A4C00FC03CE /* Assets.xcassets */; };
 		4EDE098D29E70A4C00FC03CE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EDE098C29E70A4C00FC03CE /* Preview Assets.xcassets */; };
 		4EDE099D29E70B2100FC03CE /* URLPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDE099C29E70B2100FC03CE /* URLPool.swift */; };
 		4EDE099F29E70B2E00FC03CE /* URLRequestPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDE099E29E70B2E00FC03CE /* URLRequestPool.swift */; };
-		4EDE09A129E70B3900FC03CE /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDE09A029E70B3900FC03CE /* Error.swift */; };
+		4EDE09A129E70B3900FC03CE /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDE09A029E70B3900FC03CE /* NetworkError.swift */; };
 		4EDE09A329E70B5900FC03CE /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDE09A229E70B5900FC03CE /* HTTPClient.swift */; };
 		4EDE09A729E70BB000FC03CE /* ProductService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDE09A629E70BB000FC03CE /* ProductService.swift */; };
 		4EDE09AA29E70C4D00FC03CE /* ProductResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDE09A929E70C4D00FC03CE /* ProductResponse.swift */; };
@@ -103,13 +106,16 @@
 		4EADC1C629F4801C006B97EF /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		4EADC1C829F48089006B97EF /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		4EADC1CB29F6CDFB006B97EF /* SectionDividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionDividerView.swift; sourceTree = "<group>"; };
+		4EB488C929F8993500096CF7 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
+		4EB488CC29F8B28500096CF7 /* LocalizedAlertError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedAlertError.swift; sourceTree = "<group>"; };
+		4EB488CE29F8B2F000096CF7 /* AlertText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertText.swift; sourceTree = "<group>"; };
 		4EDE098229E70A4C00FC03CE /* ShopSavvy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShopSavvy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EDE098529E70A4C00FC03CE /* ShopSavvyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopSavvyApp.swift; sourceTree = "<group>"; };
 		4EDE098929E70A4C00FC03CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4EDE098C29E70A4C00FC03CE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4EDE099C29E70B2100FC03CE /* URLPool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLPool.swift; sourceTree = "<group>"; };
 		4EDE099E29E70B2E00FC03CE /* URLRequestPool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestPool.swift; sourceTree = "<group>"; };
-		4EDE09A029E70B3900FC03CE /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		4EDE09A029E70B3900FC03CE /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		4EDE09A229E70B5900FC03CE /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		4EDE09A629E70BB000FC03CE /* ProductService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductService.swift; sourceTree = "<group>"; };
 		4EDE09A929E70C4D00FC03CE /* ProductResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductResponse.swift; sourceTree = "<group>"; };
@@ -345,6 +351,23 @@
 			path = "View Model";
 			sourceTree = "<group>";
 		};
+		4EB488CB29F8B26C00096CF7 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				4EDE09A029E70B3900FC03CE /* NetworkError.swift */,
+				4EB488CC29F8B28500096CF7 /* LocalizedAlertError.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		4EB488D029F8B4C000096CF7 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				4EB488CE29F8B2F000096CF7 /* AlertText.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		4EDE097929E70A4C00FC03CE = {
 			isa = PBXGroup;
 			children = (
@@ -404,7 +427,9 @@
 		4EDE099529E70A6E00FC03CE /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				4EB488CB29F8B26C00096CF7 /* Error */,
 				4EDE09B029E710C300FC03CE /* Extensions */,
+				4EB488D029F8B4C000096CF7 /* Helpers */,
 				4EDE099B29E70B0A00FC03CE /* Networking */,
 			);
 			path = Utilities;
@@ -423,7 +448,6 @@
 			isa = PBXGroup;
 			children = (
 				4EDE09AD29E7105200FC03CE /* Client */,
-				4EDE09A029E70B3900FC03CE /* Error.swift */,
 				4EDE099C29E70B2100FC03CE /* URLPool.swift */,
 				4EDE099E29E70B2E00FC03CE /* URLRequestPool.swift */,
 			);
@@ -445,6 +469,7 @@
 				4EDE09B329E7110A00FC03CE /* URLRequest+Extensions.swift */,
 				4E002E9029E9E8D000246C5F /* Optional+Extensions.swift */,
 				4EADC1C829F48089006B97EF /* String+Extensions.swift */,
+				4EB488C929F8993500096CF7 /* View+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -633,6 +658,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EDE09BD29E7119F00FC03CE /* ProductFeedView.swift in Sources */,
+				4EB488CA29F8993500096CF7 /* View+Extensions.swift in Sources */,
 				4E002EC029EB0DF900246C5F /* ProductFeedViewModeling.swift in Sources */,
 				4EDE09A729E70BB000FC03CE /* ProductService.swift in Sources */,
 				4E002E8929E9B9B000246C5F /* RatingView.swift in Sources */,
@@ -645,7 +671,8 @@
 				4EDE09AA29E70C4D00FC03CE /* ProductResponse.swift in Sources */,
 				4EADC1CC29F6CDFB006B97EF /* SectionDividerView.swift in Sources */,
 				4E002E8D29E9C18600246C5F /* ProductCardView.swift in Sources */,
-				4EDE09A129E70B3900FC03CE /* Error.swift in Sources */,
+				4EB488CF29F8B2F000096CF7 /* AlertText.swift in Sources */,
+				4EDE09A129E70B3900FC03CE /* NetworkError.swift in Sources */,
 				4EADC1C929F48089006B97EF /* String+Extensions.swift in Sources */,
 				4E002E8F29E9C25D00246C5F /* ShoppingCartView.swift in Sources */,
 				4EDE09BB29E7119200FC03CE /* ProductFeedViewModel.swift in Sources */,
@@ -656,6 +683,7 @@
 				4EDE09B229E710ED00FC03CE /* Data+Extensions.swift in Sources */,
 				4EADC1C229F42547006B97EF /* ShoppingCartViewModel.swift in Sources */,
 				4EDE09B429E7110A00FC03CE /* URLRequest+Extensions.swift in Sources */,
+				4EB488CD29F8B28500096CF7 /* LocalizedAlertError.swift in Sources */,
 				4EDE09C429E7265000FC03CE /* ImageView.swift in Sources */,
 				4EDE09BF29E7140A00FC03CE /* Product.swift in Sources */,
 			);

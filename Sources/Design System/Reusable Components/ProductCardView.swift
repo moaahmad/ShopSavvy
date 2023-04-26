@@ -84,6 +84,7 @@ struct ProductCardView_Previews: PreviewProvider {
         var subtotalTitleText: String = ""
         var subtotalValueText: String = ""
         var buyNowText: String = ""
+        var buyNowAlertText: AlertText = .init(title: "", message: "")
         var cartCount: Int = 0
         var productsInCart: [Product] = []
 

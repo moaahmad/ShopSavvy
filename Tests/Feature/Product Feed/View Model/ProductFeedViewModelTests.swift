@@ -32,6 +32,19 @@ extension ProductFeedViewModelTests {
         XCTAssertEqual(sut.products.count, 0)
     }
 
+    func test_loadFeed_isPullToRefreshFalse_noCallMade() {
+        // Given
+        let (sut, service) = makeSUT()
+        sut.products = [.anyProduct()]
+
+        // When
+        sut.loadFeed(isPullToRefresh: false)
+
+        // Then
+        let mockService = try? XCTUnwrap(service as? MockProductService)
+        XCTAssertEqual(mockService?.fetchProductsCalledCount, 0)
+    }
+
     func test_products_loadFeed_30Values() async throws {
             // Given
             let sut = makeSUT(
@@ -70,7 +83,7 @@ extension ProductFeedViewModelTests {
         exp.assertForOverFulfill = false
 
         // When
-        sut.loadFeed()
+        sut.loadFeed(isPullToRefresh: true)
 
         sut.$products
             .receive(on: DispatchQueue.main)

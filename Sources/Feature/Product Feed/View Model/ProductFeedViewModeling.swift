@@ -11,7 +11,8 @@ protocol ProductFeedViewModeling {
     var isLoading: Bool { get }
     var title: String { get }
     var products: [Product] { get }
+    var error: Error? { get set }
 
-    func loadFeed()
+    func loadFeed(isPullToRefresh: Bool)
     func loadMoreContentIfNeeded(currentItem: Product?)
 }

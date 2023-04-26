@@ -24,7 +24,7 @@ struct ProductFeedView<
             shoppingCartViewModel: shoppingCartViewModel
         )
         .animation(.easeInOut, value: productFeedViewModel.isLoading)
-        .onAppear { productFeedViewModel.loadFeed() }
+        .onAppear { productFeedViewModel.loadFeed(isPullToRefresh: false) }
         .navigationTitle(productFeedViewModel.title)
     }
 }
@@ -50,7 +50,7 @@ extension ProductFeedView {
                     }
                 }
                 .listStyle(.inset)
-                .refreshable { productFeedViewModel.loadFeed() }
+                .refreshable { productFeedViewModel.loadFeed(isPullToRefresh: true) }
                 .overlay(alignment: .top) {
                     if productFeedViewModel.isLoading {
                         ProgressView()
@@ -67,11 +67,12 @@ extension ProductFeedView {
 
 struct ProductFeedView_Previews: PreviewProvider {
     final class PreviewViewModel: ProductFeedViewModeling & ObservableObject {
+        var error: Error? = nil
         var title: String = "Products"
         var products: [Product] = []
         var isLoading: Bool = false
 
-        func loadFeed() {}
+        func loadFeed(isPullToRefresh: Bool) {}
         func loadMoreContentIfNeeded(currentItem: Product?) {}
     }
 

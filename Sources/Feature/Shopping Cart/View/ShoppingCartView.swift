@@ -21,7 +21,6 @@ struct ShoppingCartView<ViewModel: ShoppingCartViewModeling & ObservableObject>:
                     if viewModel.productsInCart.isEmpty {
                         // Empty State
                         Text(viewModel.emptyText)
-                            .lineSpacing(.Spacer.sm)
                             .foregroundColor(.secondary)
                             .padding(.top, .Spacer.sm)
                     } else {
@@ -53,7 +52,6 @@ struct ShoppingCartView<ViewModel: ShoppingCartViewModeling & ObservableObject>:
             BuyNowButtonView(viewModel: viewModel, showingBuyNow: $showingBuyNow)
                 .padding(.vertical, .Spacer.xs)
         }
-        .animation(.default, value: viewModel.productsInCart)
         .padding(.horizontal, .Spacer.sm)
         .navigationTitle(viewModel.title)
         .navigationBarTitleDisplayMode(.inline)
@@ -65,17 +63,16 @@ struct ShoppingCartView<ViewModel: ShoppingCartViewModeling & ObservableObject>:
         }
         .alert(isPresented: $showingBuyNow) {
             Alert(
-                title: Text("Your delivery is on its way! 🙌🏽"),
-                message: Text("Shopping cart will now be cleared"),
+                title: Text(viewModel.buyNowAlertText.title),
+                message: Text(viewModel.buyNowAlertText.message),
                 primaryButton: .destructive(
-                    Text("Reset")
+                    Text(viewModel.buyNowAlertText.action)
                 ) {
-                    viewModel.resetShoppingCart()
+                    withAnimation { viewModel.resetShoppingCart() }
                 },
                 secondaryButton: .cancel()
             )
         }
-
     }
 }
 
@@ -118,34 +115,36 @@ private extension ShoppingCartView {
                         .clipShape( Circle() )
                 }
 
-                VStack(alignment: .leading, spacing: .Spacer.xxxs) {
+                VStack(alignment: .leading, spacing: .Spacer.xxs) {
+                    Text(product.title.orEmpty)
+                        .font(.body)
+                        .fontWeight(.semibold)
+
                     HStack {
-                        Text(product.title.orEmpty)
-                            .font(.body)
-                            .fontWeight(.semibold)
+                        VStack(alignment: .leading, spacing: .Spacer.xxxs) {
+                            PriceInfoView(
+                                price: product.price.orZero,
+                                discountPercentage: product.discountPercentage,
+                                font: .callout
+                            )
+
+                            Text(quantity)
+                                .foregroundColor(.secondary)
+                                .font(.footnote)
+                        }
+
+                        Stepper(
+                            "",
+                            onIncrement: {
+                                withAnimation { onIncrement() }
+                                UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                            }, onDecrement: {
+                                withAnimation { onDecrement() }
+                                UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                            }
+                        )
                     }
-
-                    PriceInfoView(
-                        price: product.price.orZero,
-                        discountPercentage: product.discountPercentage,
-                        font: .callout
-                    )
-
-                    Text(quantity)
-                        .foregroundColor(.secondary)
-                        .font(.footnote)
                 }
-
-                Stepper(
-                    "",
-                    onIncrement: {
-                        onIncrement()
-                        UIImpactFeedbackGenerator(style: .light).impactOccurred()
-                    }, onDecrement: {
-                        onDecrement()
-                        UIImpactFeedbackGenerator(style: .light).impactOccurred()
-                    }
-                )
             }
         }
     }
@@ -182,7 +181,9 @@ private extension ShoppingCartView {
 
         var body: some View {
             Button {
-                viewModel.resetShoppingCart()
+                withAnimation {
+                    viewModel.resetShoppingCart()
+                }
             } label: {
                 Text("Reset")
                     .font(.footnote)
@@ -195,7 +196,6 @@ private extension ShoppingCartView {
                             .stroke(viewModel.cartCount > 0 ? .primary : .secondary, lineWidth: 1)
                     )
                     .foregroundColor(viewModel.cartCount > 0 ? .primary : .secondary)
-                    .animation(.default, value: viewModel.cartCount)
             }
         }
     }
@@ -210,6 +210,7 @@ struct ShoppingCartView_Previews: PreviewProvider {
         var subtotalTitleText: String = ""
         var subtotalValueText: String = ""
         var buyNowText: String = ""
+        var buyNowAlertText: AlertText = .init(title: "", message: "")
         var productsInCart: [Product] = []
         var cartCount: Int = 0
 

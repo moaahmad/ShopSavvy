@@ -19,6 +19,11 @@ final class ShoppingCartViewModel: ShoppingCartViewModeling & ObservableObject {
     lazy var subtotalTitleText = "shopping_cart_subtotal".localized()
     lazy var subtotalValueText = "shopping_cart_value".localized(String(0))
     lazy var buyNowText = "shopping_cart_buy_now".localized()
+    lazy var buyNowAlertText = AlertText(
+        title: "shopping_cart_buy_now_alert_title".localized(),
+        message: "shopping_cart_buy_now_alert_message".localized(),
+        action: "shopping_cart_buy_now_alert_action".localized()
+    )
 
     // MARK: - Published Properties
 
