@@ -13,46 +13,40 @@ struct ShoppingCartView<ViewModel: ShoppingCartViewModeling & ObservableObject>:
 
     var body: some View {
         VStack(alignment: .leading, spacing: .zero) {
-            ScrollView(showsIndicators: false) {
-                VStack(alignment: .leading) {
-                    // Header View
-                    ShoppingCartHeaderView(viewModel: viewModel)
-
+            // Cart Content View
+            List {
+                Section {
                     if viewModel.productsInCart.isEmpty {
-                        // Empty State
                         Text(viewModel.emptyText)
                             .foregroundColor(.secondary)
                             .padding(.top, .Spacer.sm)
                     } else {
-                        // Content View
-                        LazyVStack(alignment: .leading) {
-                            ForEach(
-                                Array(zip(viewModel.productsInCart.indices, viewModel.productsInCart)),
-                                id: \.0
-                            ) { index, product in
-                                ShoppingCartCardView(
-                                    product: product,
-                                    quantity: viewModel.productInCartQuantity(product),
-                                    onIncrement: { viewModel.addOrRemoveProduct(product, action: .add) },
-                                    onDecrement: { viewModel.addOrRemoveProduct(product, action: .remove) }
-                                )
-                                .padding(.vertical, .Spacer.xxs)
-
-                                if index != viewModel.productsInCart.count - 1 {
-                                    SectionDividerView(padding: .Spacer.sm)
-                                }
-                            }
+                        ForEach(
+                            Array(zip(viewModel.productsInCart.indices, viewModel.productsInCart)),
+                            id: \.0
+                        ) { index, product in
+                            ShoppingCartCardView(
+                                product: product,
+                                quantity: viewModel.productInCartQuantity(product),
+                                onIncrement: { viewModel.addOrRemoveProduct(product, action: .add) },
+                                onDecrement: { viewModel.addOrRemoveProduct(product, action: .remove) }
+                            )
                         }
                     }
+                } header: {
+                    ShoppingCartHeaderView(viewModel: viewModel)
+                        .foregroundColor(.primary)
                 }
             }
+            .listStyle(.plain)
 
             // Buy Now CTA
             SectionDividerView(padding: -.Spacer.sm)
             BuyNowButtonView(viewModel: viewModel, showingBuyNow: $showingBuyNow)
                 .padding(.vertical, .Spacer.xs)
+                .padding(.horizontal, .Spacer.sm)
         }
-        .padding(.horizontal, .Spacer.sm)
+        .animation(.default, value: viewModel.productsInCart)
         .navigationTitle(viewModel.title)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
