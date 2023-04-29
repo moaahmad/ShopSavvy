@@ -24,7 +24,7 @@ struct ProductCardView: View {
                     .clipShape(
                         RoundedRectangle(cornerRadius: .Image.cornerRadius)
                     )
-                    .padding(.bottom, .Spacer.xxs)
+                    .padding(.bottom, .Spacer.xxxs)
             }
 
             HStack {
@@ -37,7 +37,7 @@ struct ProductCardView: View {
 
                 Button {
                     buttonAction()
-                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                    UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                 } label: {
                     Image(systemName: ImageAsset.plus)
                         .font(.caption)
@@ -78,21 +78,6 @@ private extension ProductCardView {
 // MARK: - Previews
 
 struct ProductCardView_Previews: PreviewProvider {
-    final class PreviewCartViewModel: ShoppingCartViewModeling {
-        var title: String = ""
-        var emptyText: String = ""
-        var subtotalTitleText: String = ""
-        var subtotalValueText: String = ""
-        var buyNowText: String = ""
-        var buyNowAlertText: AlertText = .init(title: "", message: "")
-        var cartCount: Int = 0
-        var productsInCart: [Product] = []
-
-        func addOrRemoveProduct(_ product: Product, action: CartAction) {}
-        func productInCartQuantity(_ product: Product) -> String { "" }
-        func resetShoppingCart() {}
-    }
-
     static var previews: some View {
         GeometryReader { geometry in
             ProductCardView(

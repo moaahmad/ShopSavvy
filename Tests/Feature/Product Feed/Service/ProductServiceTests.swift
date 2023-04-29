@@ -5,6 +5,7 @@
 //  Created by Mo Ahmad on 17/04/2023.
 //
 
+import MockCore
 import XCTest
 @testable import ShopSavvy
 
@@ -64,7 +65,7 @@ extension ProductServiceTests {
 
     func test_fetchProducts_onSuccessWithInvalidData_returnsInvalidDataError() async throws {
         // Given
-        let result = (MockServer.loadLocalJSON("BadJSON"), Self.httpResponse(code: 200))
+        let result = (MockServer.loadLocalJSON(.badJSON), Self.httpResponse(code: 200))
         let (sut, _) = makeSUT(result: .success(result))
 
         // When
@@ -83,7 +84,7 @@ extension ProductServiceTests {
 extension ProductServiceTests {
     func test_fetchProducts_onSuccess_returnsData() async throws {
         // Given
-        let validData = MockServer.loadLocalJSON("Products")
+        let validData = MockServer.loadLocalJSON(.products)
         let validResponse = Self.httpResponse(code: 200)
         let (sut, _) = makeSUT(result: .success((validData, validResponse)))
 

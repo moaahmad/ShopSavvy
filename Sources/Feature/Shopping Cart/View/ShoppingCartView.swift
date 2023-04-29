@@ -21,16 +21,20 @@ struct ShoppingCartView<ViewModel: ShoppingCartViewModeling & ObservableObject>:
                             .foregroundColor(.secondary)
                             .padding(.top, .Spacer.sm)
                     } else {
-                        ForEach(
-                            Array(zip(viewModel.productsInCart.indices, viewModel.productsInCart)),
-                            id: \.0
-                        ) { index, product in
+                        ForEach(viewModel.productsInCart, id: \.id) { product in
                             ShoppingCartCardView(
                                 product: product,
                                 quantity: viewModel.productInCartQuantity(product),
                                 onIncrement: { viewModel.addOrRemoveProduct(product, action: .add) },
                                 onDecrement: { viewModel.addOrRemoveProduct(product, action: .remove) }
                             )
+                            .swipeActions {
+                                Button(role: .destructive) {
+                                    viewModel.deleteProductFromCart(product)
+                                } label: {
+                                    Label(viewModel.deleteText, systemImage: ImageAsset.trashIcon)
+                                }
+                            }
                         }
                     }
                 } header: {
@@ -88,7 +92,7 @@ private extension ShoppingCartView {
                     .font(.title2)
                     .fontWeight(.heavy)
             }
-            .padding(.bottom, .Spacer.xs)
+            .padding(.vertical, .Spacer.xxs)
         }
     }
 
@@ -140,6 +144,7 @@ private extension ShoppingCartView {
                     }
                 }
             }
+            .padding(.vertical, .Spacer.xxxs )
         }
     }
 
@@ -175,11 +180,9 @@ private extension ShoppingCartView {
 
         var body: some View {
             Button {
-                withAnimation {
-                    viewModel.resetShoppingCart()
-                }
+                withAnimation { viewModel.resetShoppingCart() }
             } label: {
-                Text("Reset")
+                Text(viewModel.buyNowAlertText.action)
                     .font(.footnote)
                     .fontWeight(.semibold)
                     .frame(maxWidth: .infinity)
@@ -195,25 +198,11 @@ private extension ShoppingCartView {
     }
 }
 
-// MARK: - Previews
+// MARK: - Constants
 
-struct ShoppingCartView_Previews: PreviewProvider {
-    final class PreviewViewModel: ShoppingCartViewModeling & ObservableObject {
-        var title: String = ""
-        var emptyText: String = ""
-        var subtotalTitleText: String = ""
-        var subtotalValueText: String = ""
-        var buyNowText: String = ""
-        var buyNowAlertText: AlertText = .init(title: "", message: "")
-        var productsInCart: [Product] = []
-        var cartCount: Int = 0
-
-        func addOrRemoveProduct(_ product: Product, action: CartAction) {}
-        func productInCartQuantity(_ product: Product) -> String { "" }
-        func resetShoppingCart() {}
-    }
-
-    static var previews: some View {
-        ShoppingCartView(viewModel: PreviewViewModel())
+private extension ShoppingCartView {
+    struct ImageAsset {
+        private init() {}
+        static var trashIcon: String { "trash.fill" }
     }
 }

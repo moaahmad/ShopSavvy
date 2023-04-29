@@ -5,6 +5,7 @@
 //  Created by Mo Ahmad on 17/04/2023.
 //
 
+import MockCore
 import Combine
 import XCTest
 @testable import ShopSavvy
@@ -130,7 +131,7 @@ extension ProductFeedViewModelTests {
 
 extension ProductResponse {
     static func anyProductResponse() -> ProductResponse {
-        let data = MockServer.loadLocalJSON("Products")
+        let data = MockServer.loadLocalJSON(.products)
         return try! JSONDecoder().decode(ProductResponse.self, from: data)
     }
 }

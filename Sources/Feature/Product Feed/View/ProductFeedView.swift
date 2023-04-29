@@ -48,6 +48,7 @@ extension ProductFeedView {
                     .onAppear {
                         productFeedViewModel.loadMoreContentIfNeeded(currentItem: product)
                     }
+                    .accessibilityIdentifier("")
                 }
                 .listStyle(.inset)
                 .refreshable { productFeedViewModel.loadFeed(isPullToRefresh: true) }

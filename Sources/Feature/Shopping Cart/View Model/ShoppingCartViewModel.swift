@@ -18,6 +18,7 @@ final class ShoppingCartViewModel: ShoppingCartViewModeling & ObservableObject {
     lazy var emptyText = "shopping_cart_empty".localized()
     lazy var subtotalTitleText = "shopping_cart_subtotal".localized()
     lazy var subtotalValueText = "shopping_cart_value".localized(String(0))
+    lazy var deleteText = "delete".localized()
     lazy var buyNowText = "shopping_cart_buy_now".localized()
     lazy var buyNowAlertText = AlertText(
         title: "shopping_cart_buy_now_alert_title".localized(),
@@ -59,6 +60,10 @@ final class ShoppingCartViewModel: ShoppingCartViewModeling & ObservableObject {
             guard let productCount = shoppingCart[product] else { return }
             shoppingCart[product] = productCount == 1 ? nil : productCount - 1
         }
+    }
+
+    func deleteProductFromCart(_ product: Product) {
+        shoppingCart.removeValue(forKey: product)
     }
 
     func productInCartQuantity(_ product: Product) -> String {

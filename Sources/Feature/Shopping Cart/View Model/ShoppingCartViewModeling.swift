@@ -16,8 +16,10 @@ protocol ShoppingCartViewModeling {
     var subtotalValueText: String { get }
     var buyNowText: String { get }
     var buyNowAlertText: AlertText { get }
+    var deleteText: String { get }
 
     func addOrRemoveProduct(_ product: Product, action: CartAction)
+    func deleteProductFromCart(_ product: Product)
     func productInCartQuantity(_ product: Product) -> String
     func resetShoppingCart()
 }
