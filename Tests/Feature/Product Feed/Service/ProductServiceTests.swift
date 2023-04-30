@@ -5,7 +5,7 @@
 //  Created by Mo Ahmad on 17/04/2023.
 //
 
-import MockCore
+import MockKit
 import XCTest
 @testable import ShopSavvy
 

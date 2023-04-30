@@ -5,10 +5,11 @@
 //  Created by Mo Ahmad on 28/04/2023.
 //
 
+import MockKit
 import Foundation
 
-public final class UITestingNetworkHandler {
-    public static func register() {
+final class UITestingNetworkHandler {
+    static func register() {
         URLProtocol.registerClass(UITestingURLProtocol.self)
 
         UITestingURLProtocol.responseProvider = { request in

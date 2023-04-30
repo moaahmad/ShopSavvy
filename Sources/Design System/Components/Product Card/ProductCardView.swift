@@ -39,13 +39,13 @@ struct ProductCardView: View {
                     buttonAction()
                     UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                 } label: {
-                    Image(systemName: ImageAsset.plus)
+                    Image(systemName: .ImageAsset.plus)
                         .font(.caption)
                         .fontWeight(.semibold)
                 }
                 .buttonStyle(BorderedButtonStyle())
                 .layoutPriority(1)
-                .accessibilityLabel("Add \(product.title.orEmpty) to cart")
+                .accessibilityLabel(AccessibilityIdentifier.productTitleIdentifier(product))
             }
 
             Text(product.description.orEmpty)
@@ -54,37 +54,34 @@ struct ProductCardView: View {
                 .accessibilityLabel(product.description.orEmpty)
 
             RatingView(rating: product.rating.orZero)
-                .accessibilityLabel("Rated \(product.rating.orZero) stars")
+                .accessibilityLabel(AccessibilityIdentifier.productRatingIdentifier(product))
 
             PriceInfoView(
                 price: product.price.orZero,
                 discountPercentage: product.discountPercentage
             )
-            .accessibilityLabel("Price \(product.price.orZero) pounds, \(product.discountPercentage.orZero) percent off")
+            .accessibilityLabel(AccessibilityIdentifier.productPriceInfoIdentifier(product))
         }
         .padding(.vertical, .Spacer.xxs)
     }
 }
 
-// MARK: - Constants
+// MARK: - Accessibility Identifier
 
-private extension ProductCardView {
-    struct ImageAsset {
+extension ProductCardView {
+    struct AccessibilityIdentifier {
         private init() {}
-        static var plus: String { "plus" }
-    }
-}
 
-// MARK: - Previews
+        static func productTitleIdentifier(_ product: Product) -> String {
+            "Add \(product.title.orEmpty) to cart"
+        }
 
-struct ProductCardView_Previews: PreviewProvider {
-    static var previews: some View {
-        GeometryReader { geometry in
-            ProductCardView(
-                product: Product(),
-                geometry: geometry,
-                buttonAction: {}
-            )
+        static func productRatingIdentifier(_ product: Product) -> String {
+            "Rated \(product.rating.orZero) stars"
+        }
+
+        static func productPriceInfoIdentifier(_ product: Product) -> String {
+            "Price \(product.price.orZero) pounds, \(product.discountPercentage.orZero) percent off"
         }
     }
 }

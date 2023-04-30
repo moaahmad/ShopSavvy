@@ -32,7 +32,7 @@ struct ShoppingCartView<ViewModel: ShoppingCartViewModeling & ObservableObject>:
                                 Button(role: .destructive) {
                                     viewModel.deleteProductFromCart(product)
                                 } label: {
-                                    Label(viewModel.deleteText, systemImage: ImageAsset.trashIcon)
+                                    Label(viewModel.deleteText, systemImage: .ImageAsset.trashIcon)
                                 }
                             }
                         }
@@ -195,14 +195,5 @@ private extension ShoppingCartView {
                     .foregroundColor(viewModel.cartCount > 0 ? .primary : .secondary)
             }
         }
-    }
-}
-
-// MARK: - Constants
-
-private extension ShoppingCartView {
-    struct ImageAsset {
-        private init() {}
-        static var trashIcon: String { "trash.fill" }
     }
 }

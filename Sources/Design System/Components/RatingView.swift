@@ -20,7 +20,7 @@ struct RatingView: View {
         HStack(spacing: .Spacer.xxxs) {
             let stars = HStack(spacing: .zero) {
                 ForEach(0..<maxRating, id: \.self) { _ in
-                    Image(systemName: ImageAsset.star)
+                    Image(systemName: .ImageAsset.star)
                         .font(.caption)
                 }
             }
@@ -44,13 +44,6 @@ struct RatingView: View {
                 .foregroundColor(.yellow)
                 .padding(.leading, .Spacer.xxxs)
         }
-    }
-}
-
-private extension RatingView {
-    struct ImageAsset {
-        private init() {}
-        static var star: String { "star.fill" }
     }
 }
 

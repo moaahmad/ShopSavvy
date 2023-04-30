@@ -24,7 +24,10 @@ struct MainTabView: View {
             }
             .tag(0)
             .tabItem {
-                Label(productFeedViewModel.title, systemImage: "list.bullet.below.rectangle")
+                Label(
+                    productFeedViewModel.title,
+                    systemImage: .ImageAsset.listBulletBelowRectangle
+                )
             }
 
             // Shopping Cart
@@ -33,7 +36,10 @@ struct MainTabView: View {
             }
             .tag(1)
             .tabItem {
-                Label(shoppingCartViewModel.title, systemImage: "cart")
+                Label(
+                    shoppingCartViewModel.title,
+                    systemImage: .ImageAsset.cart
+                )
             }
             .badge(shoppingCartViewModel.cartCount)
         }

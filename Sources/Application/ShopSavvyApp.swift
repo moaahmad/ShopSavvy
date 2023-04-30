@@ -5,7 +5,6 @@
 //  Created by Mo Ahmad on 12/04/2023.
 //
 
-import MockCore
 import SwiftUI
 
 struct ShopSavvyApp: App {
@@ -13,10 +12,10 @@ struct ShopSavvyApp: App {
         WindowGroup {
             MainTabView()
             #if DEBUG
-                .onAppear(perform: {
+                .onAppear {
                     guard CommandLine.arguments.contains("–uitesting") else { return }
                     UITestingNetworkHandler.register()
-                })
+                }
             #endif
         }
     }

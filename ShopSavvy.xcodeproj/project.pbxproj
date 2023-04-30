@@ -13,7 +13,7 @@
 		4E002E9129E9E8D000246C5F /* Optional+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E002E9029E9E8D000246C5F /* Optional+Extensions.swift */; };
 		4E002EB429EA669600246C5F /* PriceInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E002EB329EA669600246C5F /* PriceInfoView.swift */; };
 		4E002EB829EAFF7C00246C5F /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E002EB729EAFF7C00246C5F /* Spacing.swift */; };
-		4E002EBA29EAFFAF00246C5F /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E002EB929EAFFAF00246C5F /* Image.swift */; };
+		4E002EBA29EAFFAF00246C5F /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E002EB929EAFFAF00246C5F /* Constant.swift */; };
 		4E002EBE29EB0DDB00246C5F /* ShoppingCartViewModeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E002EBD29EB0DDB00246C5F /* ShoppingCartViewModeling.swift */; };
 		4E002EC029EB0DF900246C5F /* ProductFeedViewModeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E002EBF29EB0DF900246C5F /* ProductFeedViewModeling.swift */; };
 		4E002ECB29ECC10F00246C5F /* HTTPClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E002ECA29ECC10F00246C5F /* HTTPClientSpy.swift */; };
@@ -32,7 +32,9 @@
 		4E250F2F29F83AC9006B60A6 /* PriceInfoViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E250F2E29F83AC9006B60A6 /* PriceInfoViewTests.swift */; };
 		4E250F3129F83BA9006B60A6 /* SectionDividerViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E250F3029F83BA9006B60A6 /* SectionDividerViewTests.swift */; };
 		4E250F3329F83C60006B60A6 /* ShoppingCartViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E250F3229F83C60006B60A6 /* ShoppingCartViewTests.swift */; };
-		4E2564F829FC67B1001349EB /* MockCore in Frameworks */ = {isa = PBXBuildFile; productRef = 4E2564F729FC67B1001349EB /* MockCore */; };
+		4E2564FD29FD11D7001349EB /* UITestingNetworkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2564FB29FD11D7001349EB /* UITestingNetworkHandler.swift */; };
+		4E2564FE29FD11D7001349EB /* UITestingURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2564FC29FD11D7001349EB /* UITestingURLProtocol.swift */; };
+		4E25650029FD13EC001349EB /* MockKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4E2564FF29FD13EC001349EB /* MockKit */; };
 		4EADC1C229F42547006B97EF /* ShoppingCartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EADC1C129F42547006B97EF /* ShoppingCartViewModel.swift */; };
 		4EADC1C429F43185006B97EF /* CartAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EADC1C329F43185006B97EF /* CartAction.swift */; };
 		4EADC1C729F4801C006B97EF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4EADC1C629F4801C006B97EF /* Localizable.strings */; };
@@ -90,7 +92,7 @@
 		4E002EAA29EA57F400246C5F /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E002EB329EA669600246C5F /* PriceInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceInfoView.swift; sourceTree = "<group>"; };
 		4E002EB729EAFF7C00246C5F /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
-		4E002EB929EAFFAF00246C5F /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		4E002EB929EAFFAF00246C5F /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		4E002EBD29EB0DDB00246C5F /* ShoppingCartViewModeling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewModeling.swift; sourceTree = "<group>"; };
 		4E002EBF29EB0DF900246C5F /* ProductFeedViewModeling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductFeedViewModeling.swift; sourceTree = "<group>"; };
 		4E002ECA29ECC10F00246C5F /* HTTPClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientSpy.swift; sourceTree = "<group>"; };
@@ -108,7 +110,9 @@
 		4E250F2E29F83AC9006B60A6 /* PriceInfoViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceInfoViewTests.swift; sourceTree = "<group>"; };
 		4E250F3029F83BA9006B60A6 /* SectionDividerViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionDividerViewTests.swift; sourceTree = "<group>"; };
 		4E250F3229F83C60006B60A6 /* ShoppingCartViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewTests.swift; sourceTree = "<group>"; };
-		4E2564EF29FC6432001349EB /* MockCore */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MockCore; sourceTree = "<group>"; };
+		4E2564EF29FC6432001349EB /* MockKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MockKit; sourceTree = "<group>"; };
+		4E2564FB29FD11D7001349EB /* UITestingNetworkHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITestingNetworkHandler.swift; sourceTree = "<group>"; };
+		4E2564FC29FD11D7001349EB /* UITestingURLProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITestingURLProtocol.swift; sourceTree = "<group>"; };
 		4EADC1C129F42547006B97EF /* ShoppingCartViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewModel.swift; sourceTree = "<group>"; };
 		4EADC1C329F43185006B97EF /* CartAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartAction.swift; sourceTree = "<group>"; };
 		4EADC1C629F4801C006B97EF /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
@@ -163,7 +167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EB4892229FC536D00096CF7 /* Kingfisher in Frameworks */,
-				4E2564F829FC67B1001349EB /* MockCore in Frameworks */,
+				4E25650029FD13EC001349EB /* MockKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,7 +234,7 @@
 			children = (
 				4E002EB629EAE7B300246C5F /* Components */,
 				4E002EB729EAFF7C00246C5F /* Spacing.swift */,
-				4E002EB929EAFFAF00246C5F /* Image.swift */,
+				4E002EB929EAFFAF00246C5F /* Constant.swift */,
 			);
 			path = "Design System";
 			sourceTree = "<group>";
@@ -238,7 +242,7 @@
 		4E002EB629EAE7B300246C5F /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				4E002E8C29E9C18600246C5F /* ProductCardView.swift */,
+				4E25650129FD6EBD001349EB /* Product Card */,
 				4EDE09C329E7265000FC03CE /* ImageView.swift */,
 				4E002E8829E9B9B000246C5F /* RatingView.swift */,
 				4E002EB329EA669600246C5F /* PriceInfoView.swift */,
@@ -364,9 +368,26 @@
 		4E2564F929FC69AA001349EB /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				4E2564EF29FC6432001349EB /* MockCore */,
+				4E2564EF29FC6432001349EB /* MockKit */,
 			);
 			path = Packages;
+			sourceTree = "<group>";
+		};
+		4E2564FA29FD11BA001349EB /* Testing Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				4E2564FB29FD11D7001349EB /* UITestingNetworkHandler.swift */,
+				4E2564FC29FD11D7001349EB /* UITestingURLProtocol.swift */,
+			);
+			path = "Testing Helpers";
+			sourceTree = "<group>";
+		};
+		4E25650129FD6EBD001349EB /* Product Card */ = {
+			isa = PBXGroup;
+			children = (
+				4E002E8C29E9C18600246C5F /* ProductCardView.swift */,
+			);
+			path = "Product Card";
 			sourceTree = "<group>";
 		};
 		4EADC1C529F4319E006B97EF /* Model */ = {
@@ -497,6 +518,7 @@
 		4EDE099B29E70B0A00FC03CE /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				4E2564FA29FD11BA001349EB /* Testing Helpers */,
 				4EDE09AD29E7105200FC03CE /* Client */,
 				4EDE099C29E70B2100FC03CE /* URLPool.swift */,
 				4EDE099E29E70B2E00FC03CE /* URLRequestPool.swift */,
@@ -626,7 +648,7 @@
 			name = ShopSavvy;
 			packageProductDependencies = (
 				4EB4892129FC536D00096CF7 /* Kingfisher */,
-				4E2564F729FC67B1001349EB /* MockCore */,
+				4E2564FF29FD13EC001349EB /* MockKit */,
 			);
 			productName = ShopSavvy;
 			productReference = 4EDE098229E70A4C00FC03CE /* ShopSavvy.app */;
@@ -753,7 +775,7 @@
 				4E002EB429EA669600246C5F /* PriceInfoView.swift in Sources */,
 				4EDE099D29E70B2100FC03CE /* URLPool.swift in Sources */,
 				4EDE099F29E70B2E00FC03CE /* URLRequestPool.swift in Sources */,
-				4E002EBA29EAFFAF00246C5F /* Image.swift in Sources */,
+				4E002EBA29EAFFAF00246C5F /* Constant.swift in Sources */,
 				4EDE09A329E70B5900FC03CE /* HTTPClient.swift in Sources */,
 				4E002EBE29EB0DDB00246C5F /* ShoppingCartViewModeling.swift in Sources */,
 				4EDE09AA29E70C4D00FC03CE /* ProductResponse.swift in Sources */,
@@ -768,6 +790,7 @@
 				4EADC1C429F43185006B97EF /* CartAction.swift in Sources */,
 				4E002EB829EAFF7C00246C5F /* Spacing.swift in Sources */,
 				4E002E9129E9E8D000246C5F /* Optional+Extensions.swift in Sources */,
+				4E2564FE29FD11D7001349EB /* UITestingURLProtocol.swift in Sources */,
 				4EB488E929FC34CC00096CF7 /* TestApp.swift in Sources */,
 				4EB488E129FC308600096CF7 /* AppLauncher.swift in Sources */,
 				4EDE09B229E710ED00FC03CE /* Data+Extensions.swift in Sources */,
@@ -775,6 +798,7 @@
 				4EDE09B429E7110A00FC03CE /* URLRequest+Extensions.swift in Sources */,
 				4EB488CD29F8B28500096CF7 /* LocalizedAlertError.swift in Sources */,
 				4EDE09C429E7265000FC03CE /* ImageView.swift in Sources */,
+				4E2564FD29FD11D7001349EB /* UITestingNetworkHandler.swift in Sources */,
 				4EDE09BF29E7140A00FC03CE /* Product.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1124,9 +1148,9 @@
 			package = 4E250F2529F82DCA006B60A6 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
 			productName = SnapshotTesting;
 		};
-		4E2564F729FC67B1001349EB /* MockCore */ = {
+		4E2564FF29FD13EC001349EB /* MockKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = MockCore;
+			productName = MockKit;
 		};
 		4EB4892129FC536D00096CF7 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
