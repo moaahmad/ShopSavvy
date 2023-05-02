@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import NetworkKit
 @testable import ShopSavvy
 
 final class HTTPClientSpy: HTTPClient {

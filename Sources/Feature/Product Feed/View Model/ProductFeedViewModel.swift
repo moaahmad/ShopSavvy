@@ -7,6 +7,7 @@
 
 import Combine
 import Foundation
+import ModelKit
 
 final class ProductFeedViewModel: ProductFeedViewModeling & ObservableObject {
     // MARK: - Properties

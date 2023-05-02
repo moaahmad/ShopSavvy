@@ -5,6 +5,7 @@
 //  Created by Mo Ahmad on 12/04/2023.
 //
 
+import ModelKit
 import SwiftUI
 
 struct ProductFeedView<
@@ -38,17 +39,20 @@ extension ProductFeedView {
 
         var body: some View {
             GeometryReader { geometry in
-                List(productFeedViewModel.products, id: \.id) { product in
+                List(
+                    Array(zip(productFeedViewModel.products.indices, productFeedViewModel.products)),
+                    id: \.0
+                ) { index, product in
                     ProductCardView(
                         product: product,
-                        geometry: geometry
+                        geometry: geometry,
+                        index: index
                     ) {
                         shoppingCartViewModel.addOrRemoveProduct(product, action: .add)
                     }
                     .onAppear {
                         productFeedViewModel.loadMoreContentIfNeeded(currentItem: product)
                     }
-                    .accessibilityIdentifier("")
                 }
                 .listStyle(.inset)
                 .refreshable { productFeedViewModel.loadFeed(isPullToRefresh: true) }

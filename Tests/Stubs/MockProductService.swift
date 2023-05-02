@@ -7,6 +7,7 @@
 
 import Combine
 import Foundation
+import ModelKit
 @testable import ShopSavvy
 
 final class MockProductService: ProductServicing {

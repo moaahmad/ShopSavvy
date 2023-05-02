@@ -19,11 +19,11 @@
 "shopping_cart_buy_now_alert_action" = "Reset";
 
 
-"generic_error_title" = "Oops something went wrong";
-"generic_error_message" = "Please try again";
-"invalid_data_error_title" = "Invalid Data Error";
-"invalid_response_error_title" = "Invalid Response Error";
-"connectivity_error_message" = "Maybe check your internet connection?";
+//"generic_error_title" = "Oops something went wrong";
+//"generic_error_message" = "Please try again";
+//"invalid_data_error_title" = "Invalid Data Error";
+//"invalid_response_error_title" = "Invalid Response Error";
+//"connectivity_error_message" = "Maybe check your internet connection?";
 
 "ok" = "OK";
 "delete" = "Delete";

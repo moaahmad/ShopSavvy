@@ -5,8 +5,9 @@
 //  Created by Mo Ahmad on 12/04/2023.
 //
 
-import Combine
 import Foundation
+import ModelKit
+import NetworkKit
 
 protocol ProductServicing {
     func fetchProducts(limit: Int, skip: Int) async throws -> ProductResponse

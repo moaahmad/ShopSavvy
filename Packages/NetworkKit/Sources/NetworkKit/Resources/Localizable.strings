@@ -1,0 +1,15 @@
+/* 
+  Localizable.strings
+  
+
+  Created by Mo Ahmad on 01/05/2023.
+  
+*/
+
+"generic_error_title" = "Oops something went wrong";
+"generic_error_message" = "Please try again";
+"invalid_data_error_title" = "Invalid Data Error";
+"invalid_response_error_title" = "Invalid Response Error";
+"connectivity_error_message" = "Maybe check your internet connection?";
+
+"ok" = "OK";

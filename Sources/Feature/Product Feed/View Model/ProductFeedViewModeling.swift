@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import ModelKit
 
 protocol ProductFeedViewModeling {
     var isLoading: Bool { get }

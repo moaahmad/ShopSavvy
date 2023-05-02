@@ -5,6 +5,7 @@
 //  Created by Mo Ahmad on 25/04/2023.
 //
 
+import ModelKit
 import Combine
 import XCTest
 @testable import ShopSavvy

@@ -5,7 +5,9 @@
 //  Created by Mo Ahmad on 17/04/2023.
 //
 
-import MockKit
+import CoreKit
+import NetworkKit
+import ModelKit
 import XCTest
 @testable import ShopSavvy
 

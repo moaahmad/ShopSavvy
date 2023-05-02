@@ -37,6 +37,13 @@
             BlueprintName = "ShopSavvy"
             ReferencedContainer = "container:ShopSavvy.xcodeproj">
          </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "NetworkKitTests"
+            BuildableName = "NetworkKitTests"
+            BlueprintName = "NetworkKitTests"
+            ReferencedContainer = "container:Packages/NetworkKit">
+         </BuildableReference>
       </CodeCoverageTargets>
       <Testables>
          <TestableReference
@@ -60,14 +67,23 @@
             </BuildableReference>
          </TestableReference>
          <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
+            skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4EB4890329FC3F8100096CF7"
-               BuildableName = "CoreTests.xctest"
-               BlueprintName = "CoreTests"
-               ReferencedContainer = "container:ShopSavvy.xcodeproj">
+               BlueprintIdentifier = "NetworkKitTests"
+               BuildableName = "NetworkKitTests"
+               BlueprintName = "NetworkKitTests"
+               ReferencedContainer = "container:Packages/NetworkKit">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "ModelKitTests"
+               BuildableName = "ModelKitTests"
+               BlueprintName = "ModelKitTests"
+               ReferencedContainer = "container:Packages/ModelKit">
             </BuildableReference>
          </TestableReference>
       </Testables>

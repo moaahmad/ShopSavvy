@@ -5,11 +5,13 @@
 //  Created by Mo Ahmad on 14/04/2023.
 //
 
+import ModelKit
 import SwiftUI
 
 struct ProductCardView: View {
     let product: Product
     let geometry: GeometryProxy
+    let index: Int
     let buttonAction: () -> Void
 
     var body: some View {
@@ -25,6 +27,7 @@ struct ProductCardView: View {
                         RoundedRectangle(cornerRadius: .Image.cornerRadius)
                     )
                     .padding(.bottom, .Spacer.xxxs)
+                    .accessibilityIdentifier(AccessibilityIdentifier.imageID(index))
             }
 
             HStack {
@@ -32,6 +35,7 @@ struct ProductCardView: View {
                     .font(.body)
                     .fontWeight(.semibold)
                     .accessibilityLabel(product.title.orEmpty)
+                    .accessibilityIdentifier(AccessibilityIdentifier.titleID(index))
 
                 Spacer()
 
@@ -45,31 +49,63 @@ struct ProductCardView: View {
                 }
                 .buttonStyle(BorderedButtonStyle())
                 .layoutPriority(1)
-                .accessibilityLabel(AccessibilityIdentifier.productTitleIdentifier(product))
+                .accessibilityLabel(AccessibilityLabel.productTitleIdentifier(product))
+                .accessibilityIdentifier(AccessibilityIdentifier.buttonID(index))
             }
 
             Text(product.description.orEmpty)
                 .font(.footnote)
                 .foregroundColor(.secondary)
                 .accessibilityLabel(product.description.orEmpty)
+                .accessibilityIdentifier(AccessibilityIdentifier.descriptionID(index))
 
             RatingView(rating: product.rating.orZero)
-                .accessibilityLabel(AccessibilityIdentifier.productRatingIdentifier(product))
+                .accessibilityLabel(AccessibilityLabel.productRatingIdentifier(product))
+                .accessibilityIdentifier(AccessibilityIdentifier.ratingID(index))
 
             PriceInfoView(
                 price: product.price.orZero,
                 discountPercentage: product.discountPercentage
             )
-            .accessibilityLabel(AccessibilityIdentifier.productPriceInfoIdentifier(product))
+            .accessibilityLabel(AccessibilityLabel.productPriceInfoIdentifier(product))
+            .accessibilityIdentifier(AccessibilityIdentifier.priceID(index))
         }
         .padding(.vertical, .Spacer.xxs)
     }
 }
 
-// MARK: - Accessibility Identifier
+// MARK: - Accessibility Strings
 
-extension ProductCardView {
+private extension ProductCardView {
     struct AccessibilityIdentifier {
+        private init() {}
+
+        static func imageID(_ index: Int) -> String {
+            "product-card-view-image-\(index)"
+        }
+
+        static func titleID(_ index: Int) -> String {
+            "product-card-view-title-\(index)"
+        }
+
+        static func descriptionID(_ index: Int) -> String {
+            "product-card-view-description-\(index)"
+        }
+
+        static func buttonID(_ index: Int) -> String {
+            "product-card-view-button-\(index)"
+        }
+
+        static func ratingID(_ index: Int) -> String {
+            "product-card-view-rating-\(index)"
+        }
+
+        static func priceID(_ index: Int) -> String {
+            "product-card-view-price-info-\(index)"
+        }
+    }
+
+    struct AccessibilityLabel {
         private init() {}
 
         static func productTitleIdentifier(_ product: Product) -> String {

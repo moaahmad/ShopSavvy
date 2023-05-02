@@ -17,6 +17,7 @@ final class ProductCardViewTests: XCTestCase {
             ProductCardView(
                 product: .anyProduct(),
                 geometry: geometry,
+                index: 0,
                 buttonAction: {}
             )
             .padding(.horizontal, .Spacer.sm)

@@ -5,6 +5,7 @@
 //  Created by Mo Ahmad on 14/04/2023.
 //
 
+import ModelKit
 import SwiftUI
 
 struct ShoppingCartView<ViewModel: ShoppingCartViewModeling & ObservableObject>: View {
@@ -28,6 +29,7 @@ struct ShoppingCartView<ViewModel: ShoppingCartViewModeling & ObservableObject>:
                                 onIncrement: { viewModel.addOrRemoveProduct(product, action: .add) },
                                 onDecrement: { viewModel.addOrRemoveProduct(product, action: .remove) }
                             )
+                            .accessibilityIdentifier("shopping-cart-card-view")
                             .swipeActions {
                                 Button(role: .destructive) {
                                     viewModel.deleteProductFromCart(product)

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import ModelKit
 
 protocol ShoppingCartViewModeling {
     var productsInCart: [Product] { get }

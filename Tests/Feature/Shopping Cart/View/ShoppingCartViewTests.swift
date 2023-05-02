@@ -6,6 +6,7 @@
 //
 
 import Combine
+import ModelKit
 import XCTest
 import SwiftUI
 import SnapshotTesting
