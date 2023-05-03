@@ -1,4 +1,3 @@
 # NetworkKit
 
-Networking layer. 
-* To be used to make requests to the `DummyJSON` API via HTTP requests
+Networking layer to be used to make HTTP requests to the `DummyJSON` API

@@ -28,7 +28,8 @@
   - `DesignKit`: Design system components and UI helpers for the `ShopSavvy` app
 - Main App:
   - `MVVM` architecture implemented to allow for a more flexible, well-separated code base. 
-    -  The `View` is decoupled from any business logic, allowing it to only concern itself with UI presentation and user interaction, and by using `ViewModel`s it would also allow for easier unit testing and potential reuse of key components.
+    - `View`s are focused only on UI presentation and user interaction
+    - `ViewModel`s focus on business logic, whilst also allowing for easier unit testing and potential reuse of key components
 
 ## Current App State
 ![Simulator Screen Recording - iPhone 14 Pro - 2023-05-03 at 16 01 23](https://user-images.githubusercontent.com/23720725/235956499-19274af2-70f6-450e-bc5c-d4dddbaa6d2b.gif)
