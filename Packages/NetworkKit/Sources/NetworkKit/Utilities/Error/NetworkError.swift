@@ -5,6 +5,7 @@
 //  Created by Mo Ahmad on 12/04/2023.
 //
 
+import CoreKit
 import Foundation
 
 public enum NetworkError: LocalizedError {
@@ -32,15 +33,5 @@ public enum NetworkError: LocalizedError {
         case .invalidResponse:
             return "generic_error_message".localized()
         }
-    }
-}
-
-private extension String {
-    func localized(_ parameters: CVarArg...) -> String {
-        var string = NSLocalizedString(self, comment: "")
-        if string == self {
-            string = NSLocalizedString(self, tableName: nil, bundle: Bundle.module, value: self, comment: "")
-        }
-        return String(format: string, arguments: parameters)
     }
 }

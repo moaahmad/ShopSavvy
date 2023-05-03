@@ -44,6 +44,13 @@
             BlueprintName = "NetworkKitTests"
             ReferencedContainer = "container:Packages/NetworkKit">
          </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "DesignKitTests"
+            BuildableName = "DesignKitTests"
+            BlueprintName = "DesignKitTests"
+            ReferencedContainer = "container:Packages/DesignKit">
+         </BuildableReference>
       </CodeCoverageTargets>
       <Testables>
          <TestableReference
@@ -80,10 +87,10 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "ModelKitTests"
-               BuildableName = "ModelKitTests"
-               BlueprintName = "ModelKitTests"
-               ReferencedContainer = "container:Packages/ModelKit">
+               BlueprintIdentifier = "DesignKitTests"
+               BuildableName = "DesignKitTests"
+               BlueprintName = "DesignKitTests"
+               ReferencedContainer = "container:Packages/DesignKit">
             </BuildableReference>
          </TestableReference>
       </Testables>

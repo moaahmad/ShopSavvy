@@ -1,3 +1,3 @@
 # CoreKit
 
-A description of this package.
+A foundational package containing core components and extensions used across the `ShopSavvy` app
