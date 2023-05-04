@@ -27,7 +27,6 @@
 		4EADC1C229F42547006B97EF /* ShoppingCartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EADC1C129F42547006B97EF /* ShoppingCartViewModel.swift */; };
 		4EADC1C729F4801C006B97EF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4EADC1C629F4801C006B97EF /* Localizable.strings */; };
 		4EB488CA29F8993500096CF7 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB488C929F8993500096CF7 /* View+Extensions.swift */; };
-		4EB488CF29F8B2F000096CF7 /* AlertText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB488CE29F8B2F000096CF7 /* AlertText.swift */; };
 		4EB488D829F992C400096CF7 /* AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB488D729F992C400096CF7 /* AppUITests.swift */; };
 		4EB488E129FC308600096CF7 /* AppLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB488E029FC308600096CF7 /* AppLauncher.swift */; };
 		4EB488E529FC345400096CF7 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB488E429FC345400096CF7 /* MainTabView.swift */; };
@@ -82,7 +81,6 @@
 		4EADC1C129F42547006B97EF /* ShoppingCartViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewModel.swift; sourceTree = "<group>"; };
 		4EADC1C629F4801C006B97EF /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		4EB488C929F8993500096CF7 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
-		4EB488CE29F8B2F000096CF7 /* AlertText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertText.swift; sourceTree = "<group>"; };
 		4EB488D529F992C400096CF7 /* UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EB488D729F992C400096CF7 /* AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUITests.swift; sourceTree = "<group>"; };
 		4EB488E029FC308600096CF7 /* AppLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLauncher.swift; sourceTree = "<group>"; };
@@ -283,7 +281,6 @@
 			isa = PBXGroup;
 			children = (
 				4EAB803929FFDF3500FF4CD2 /* Testing Helpers */,
-				4EB488CE29F8B2F000096CF7 /* AlertText.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -616,7 +613,6 @@
 				4EDE09A729E70BB000FC03CE /* ProductService.swift in Sources */,
 				4E002EBE29EB0DDB00246C5F /* ShoppingCartViewModeling.swift in Sources */,
 				4EAB803D29FFDF7500FF4CD2 /* UITestingURLProtocol.swift in Sources */,
-				4EB488CF29F8B2F000096CF7 /* AlertText.swift in Sources */,
 				4E002E8F29E9C25D00246C5F /* ShoppingCartView.swift in Sources */,
 				4EDE09BB29E7119200FC03CE /* ProductFeedViewModel.swift in Sources */,
 				4EDE098629E70A4C00FC03CE /* ShopSavvyApp.swift in Sources */,

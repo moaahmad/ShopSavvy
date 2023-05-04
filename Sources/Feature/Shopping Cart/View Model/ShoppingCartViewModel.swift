@@ -6,6 +6,7 @@
 //
 
 import Combine
+import CoreKit
 import Foundation
 import ModelKit
 

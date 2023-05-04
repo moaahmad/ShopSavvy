@@ -22,12 +22,12 @@
 
 ## Architecture
 - Packages:
-  - `CoreKit`: A foundational package containing core components and extensions used across the `ShopSavvy` app.
-  - `ModelKit`: A package containing the required models for the `ShopSavvy` app
+  - `CoreKit`: A foundational package containing core components and extensions used across the app
+  - `ModelKit`: A package containing the required models used across the app
   - `NetworkKit`: Networking layer to be used to make HTTP requests to the `DummyJSON` API
-  - `DesignKit`: Design system components and UI helpers for the `ShopSavvy` app
+  - `DesignKit`: Design system components and UI helpers
 - Main App:
-  - `MVVM` architecture implemented to allow for a more flexible, well-separated code base. 
+  - `MVVM` architecture implemented to allow for a more flexible, well-separated code base 
     - `View`s are focused only on UI presentation and user interaction
     - `ViewModel`s focus on business logic, whilst also allowing for easier unit testing and potential reuse of key components
 

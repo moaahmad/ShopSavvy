@@ -27,8 +27,8 @@ final class AppUITests: UITestCase {
     /// **Scenario 2: View product in cart**
     ///
     /// **GIVEN** I am on the products feed screen
-    /// **WHEN** I tap the add a product to cart button AND navigate to the cart screen
-    /// **THEN** I can see the product in my cart
+    /// **WHEN** I tap the add a product to cart button
+    /// **THEN** I can navigate to the cart screen AND see the product in my cart
     func testViewProductFeed_2() throws {
         launchApp()
 

@@ -12,7 +12,7 @@ extension View {
     @ViewBuilder
     func errorAlert(
         error: Binding<Error?>,
-        buttonTitle: String = "OK"
+        buttonTitle: String = "ok".localized()
     ) -> some View {
         let localizedAlertError = LocalizedAlertError(error: error.wrappedValue)
         alert(

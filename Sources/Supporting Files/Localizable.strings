@@ -14,9 +14,6 @@
 "shopping_cart_value" = "£%@";
 "shopping_cart_quantity" = "Quantity: x%@";
 "shopping_cart_buy_now" = "Buy Now";
-"shopping_cart_buy_now_alert_title" = "Your delivery is on its way! 🙌🏽";
+"shopping_cart_buy_now_alert_title" = "Your delivery is on its way!";
 "shopping_cart_buy_now_alert_message" = "Do you want to reset your shopping cart?";
 "shopping_cart_buy_now_alert_action" = "Reset";
-
-"ok" = "OK";
-"delete" = "Delete";

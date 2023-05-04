@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct AlertText {
-    let title: String
-    let message: String
-    let action: String
+public struct AlertText {
+    public let title: String
+    public let message: String
+    public let action: String
 
-    init(
+    public init(
         title: String,
         message: String,
         action: String = "ok".localized()

@@ -77,20 +77,20 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "NetworkKitTests"
-               BuildableName = "NetworkKitTests"
-               BlueprintName = "NetworkKitTests"
-               ReferencedContainer = "container:Packages/NetworkKit">
+               BlueprintIdentifier = "DesignKitTests"
+               BuildableName = "DesignKitTests"
+               BlueprintName = "DesignKitTests"
+               ReferencedContainer = "container:Packages/DesignKit">
             </BuildableReference>
          </TestableReference>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DesignKitTests"
-               BuildableName = "DesignKitTests"
-               BlueprintName = "DesignKitTests"
-               ReferencedContainer = "container:Packages/DesignKit">
+               BlueprintIdentifier = "NetworkKitTests"
+               BuildableName = "NetworkKitTests"
+               BlueprintName = "NetworkKitTests"
+               ReferencedContainer = "container:Packages/NetworkKit">
             </BuildableReference>
          </TestableReference>
       </Testables>
